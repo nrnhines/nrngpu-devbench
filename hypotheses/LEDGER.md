@@ -12,7 +12,7 @@ Add a row when you form a claim; update state when measured. Link campaigns via 
 | ID | Claim (one line) | State | Evidence / tip | Notes |
 |----|------------------|-------|----------------|-------|
 | H-density-math | Traub multi-warm residual ~1.07–1.10× CN is real STATE/CURRENT math, not a new H→D tax | measured | 2026-08-06 re-smoke; portfolio / parity log | Do not re-open ion SoA / net_buf / NSB without new wall hypothesis |
-| H-matrix-2026-08-05 | 2026-08-05 `notes/perf_matrix` is **timing-only** (no spike ✓/✗); dentate native **ERR** on that tip | archived | `notes/perf_matrix/SUMMARY.md` @ tip `7ef35f6e2` | Archive under plan **2.4.1**; do not overwrite |
+| H-matrix-2026-08-05 | 2026-08-05 matrix is **timing-only** (no spike ✓/✗); dentate native **ERR** on that tip | archived | `archive/2026-08-05-matrix/` @ tip `7ef35f6e2` (**2.4.1** frozen) | Source also under `notes/perf_matrix/`; do not overwrite |
 
 ---
 
