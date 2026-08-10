@@ -1,0 +1,70 @@
+Activated NEURON from: /home/hines/neuron/nrngpu/build-gpu/install
+current_nrn_worktree=nrngpu:gpu
+branch=local/gpu-native commit=7ef35f6e2 date=2026-08-05T13:47:31-04:00
+=== RUN ring_n16_nt1_cpu 2026-08-05T13:47:31-04:00 ===
+OK ring_n16_nt1_cpu
+=== RUN ring_n16_nt1_gpu 2026-08-05T13:47:33-04:00 ===
+OK ring_n16_nt1_gpu
+=== RUN ring_n16_nt1_cn_cpu 2026-08-05T13:47:37-04:00 ===
+OK ring_n16_nt1_cn_cpu
+=== RUN ring_n16_nt1_cn_gpu 2026-08-05T13:47:39-04:00 ===
+OK ring_n16_nt1_cn_gpu
+=== RUN ring_n160_nt1_cpu 2026-08-05T13:47:44-04:00 ===
+OK ring_n160_nt1_cpu
+=== RUN ring_n160_nt1_gpu 2026-08-05T13:47:55-04:00 ===
+OK ring_n160_nt1_gpu
+=== RUN ring_n160_nt1_cn_cpu 2026-08-05T13:48:02-04:00 ===
+OK ring_n160_nt1_cn_cpu
+=== RUN ring_n160_nt1_cn_gpu 2026-08-05T13:48:15-04:00 ===
+OK ring_n160_nt1_cn_gpu
+=== RUN ring_n16_nt4_cpu 2026-08-05T13:48:24-04:00 ===
+OK ring_n16_nt4_cpu
+=== RUN ring_n16_nt4_gpu 2026-08-05T13:48:25-04:00 ===
+OK ring_n16_nt4_gpu
+=== RUN ring_n16_nt4_cn_cpu 2026-08-05T13:48:35-04:00 ===
+OK ring_n16_nt4_cn_cpu
+=== RUN ring_n16_nt4_cn_gpu 2026-08-05T13:48:37-04:00 ===
+OK ring_n16_nt4_cn_gpu
+=== RUN ring_n160_nt4_cpu 2026-08-05T13:48:52-04:00 ===
+OK ring_n160_nt4_cpu
+=== RUN ring_n160_nt4_gpu 2026-08-05T13:48:56-04:00 ===
+OK ring_n160_nt4_gpu
+=== RUN ring_n160_nt4_cn_cpu 2026-08-05T13:49:10-04:00 ===
+OK ring_n160_nt4_cn_cpu
+=== RUN ring_n160_nt4_cn_gpu 2026-08-05T13:49:22-04:00 ===
+OK ring_n160_nt4_cn_gpu
+=== RUN dent_nt1_cpu 2026-08-05T13:49:42-04:00 ===
+FAIL dent_nt1_cpu (exit 1)
+=== RUN dent_nt1_gpu 2026-08-05T13:49:43-04:00 ===
+FAIL dent_nt1_gpu (exit 1)
+=== RUN dent_nt1_cn_cpu 2026-08-05T13:49:43-04:00 ===
+FAIL dent_nt1_cn_cpu (exit 1)
+=== RUN dent_nt1_cn_gpu 2026-08-05T13:49:44-04:00 ===
+FAIL dent_nt1_cn_gpu (exit 1)
+=== RUN dent_nt4_cpu 2026-08-05T13:49:44-04:00 ===
+FAIL dent_nt4_cpu (exit 1)
+=== RUN dent_nt4_gpu 2026-08-05T13:49:44-04:00 ===
+FAIL dent_nt4_gpu (exit 1)
+=== RUN dent_nt4_cn_cpu 2026-08-05T13:49:45-04:00 ===
+FAIL dent_nt4_cn_cpu (exit 1)
+=== RUN dent_nt4_cn_gpu 2026-08-05T13:49:45-04:00 ===
+FAIL dent_nt4_cn_gpu (exit 1)
+=== RUN traub_nogap_cpu 2026-08-05T13:49:45-04:00 ===
+OK traub_nogap_cpu
+=== RUN traub_nogap_gpu 2026-08-05T13:51:33-04:00 ===
+OK traub_nogap_gpu
+=== RUN traub_nogap_cn_cpu 2026-08-05T13:52:27-04:00 ===
+OK traub_nogap_cn_cpu
+=== RUN traub_nogap_cn_gpu 2026-08-05T13:53:58-04:00 ===
+OK traub_nogap_cn_gpu
+=== RUN traub_gap_cpu 2026-08-05T13:54:31-04:00 ===
+OK traub_gap_cpu
+=== RUN traub_gap_gpu 2026-08-05T13:56:25-04:00 ===
+OK traub_gap_gpu
+=== RUN traub_gap_cn_cpu 2026-08-05T13:57:27-04:00 ===
+OK traub_gap_cn_cpu
+=== RUN traub_gap_cn_gpu 2026-08-05T13:58:58-04:00 ===
+OK traub_gap_cn_gpu
+=== RUN traub_gap_cn_gpu 2026-08-05T13:59:35-04:00 ===
+OK traub_gap_cn_gpu
+/home/hines/neuron/notes/perf_matrix/run_matrix.sh: line 130: syntax error near unexpected token `done'

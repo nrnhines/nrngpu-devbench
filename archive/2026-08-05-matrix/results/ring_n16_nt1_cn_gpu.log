@@ -1,0 +1,269 @@
+NEURON -- VERSION 9.0.1-354-ga6c6d3d70 local/gpu-native (a6c6d3d70+) 2026-08-04
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+Additional mechanisms from files
+
+[10, 20] [1, 1]
+nring=16
+cell per ring=8
+ncell_per_type=8
+ntype=16
+method = fixed 
+12345678910111213141516/home/hines/neuron/nrngpu/build-gpu/test/external_ringtest/neuron_gpu_native_mpi/ringtest.py:185: DeprecationWarning: coreneuron.gpu is deprecated; use gpu.enable (and gpu.backend for native) instead
+  coreneuron.gpu = coreneuron_gpu
+/home/hines/neuron/nrngpu/build-gpu/test/external_ringtest/neuron_gpu_native_mpi/ringtest.py:186: DeprecationWarning: coreneuron.cell_permute is deprecated; use gpu.permute instead
+  coreneuron.cell_permute = coreneuron_permute
+ 
+ Duke, Yale, and the BlueBrain Project -- Copyright 1984-2020
+ Version : 9.0.1.post354 a6c6d3d70 (2026-08-04 16:52:40 -0400)
+ 
+ Additional mechanisms from files
+ exp2syn.mod expsyn.mod hh.mod netstim.mod passive.mod pattern.mod stim.mod svclmp.mod
+
+ Info : 1 GPUs shared by 1 ranks per node
+ Memory (MBs) :             After mk_mech : Max 199.2031, Min 199.2031, Avg 199.2031 
+ GPU Memory (MiBs) : Used = 903.062500, Free = 6875.687500, Total = 7778.750000
+ Memory (MBs) :            After MPI_Init : Max 199.2656, Min 199.2656, Avg 199.2656 
+ GPU Memory (MiBs) : Used = 903.062500, Free = 6875.687500, Total = 7778.750000
+ Memory (MBs) :          Before nrn_setup : Max 199.2773, Min 199.2773, Avg 199.2773 
+ GPU Memory (MiBs) : Used = 903.062500, Free = 6875.687500, Total = 7778.750000
+best_balance=0.823583 ncell=128 ntype=16 nwarp=128
+ Setup Done   : 0.01 seconds 
+ Model size   : 1.14 MB
+ Memory (MBs) :          After nrn_setup  : Max 201.4688, Min 201.4688, Avg 201.4688 
+ GPU Memory (MiBs) : Used = 903.062500, Free = 6875.687500, Total = 7778.750000
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=true
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=2
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 201.4727, Min 201.4727, Avg 201.4727 
+ GPU Memory (MiBs) : Used = 903.062500, Free = 6875.687500, Total = 7778.750000
+ Memory (MBs) :     After nrn_finitialize : Max 201.7656, Min 201.7656, Avg 201.7656 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 100.00 ETA: 0h00m02s0.0261052s created rings
+0.0132077s initialized
+MULTI_PSOLVE i=0 runtime=1.65468 load_balance=0.0% avg_comp_time=0
+
+
+Solver Time : 1.50105
+
+
+ Simulation Statistics
+ Number of cells: 128
+ Number of compartments: 4576
+ Number of presyns: 144
+ Number of input presyns: 0
+ Number of synapses: 144
+ Number of point processes: 272
+ Number of transfer sources: 0
+ Number of transfer targets: 0
+ Number of spikes: 688
+ Number of spikes with non negative gid-s: 688
+ Info : 1 GPUs shared by 1 ranks per node
+ Memory (MBs) :             After mk_mech : Max 265.8945, Min 265.8945, Avg 265.8945 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :            After MPI_Init : Max 265.8945, Min 265.8945, Avg 265.8945 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :          Before nrn_setup : Max 265.8945, Min 265.8945, Avg 265.8945 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+best_balance=0.823583 ncell=128 ntype=16 nwarp=128
+ Setup Done   : 0.01 seconds 
+ Model size   : 1.14 MB
+ Memory (MBs) :          After nrn_setup  : Max 266.5977, Min 266.5977, Avg 266.5977 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=true
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=2
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 266.5977, Min 266.5977, Avg 266.5977 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :     After nrn_finitialize : Max 266.6758, Min 266.6758, Avg 266.6758 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 100.00 ETA: 0h00m01sMULTI_PSOLVE i=1 runtime=1.35377 load_balance=0.0% avg_comp_time=0
+
+
+Solver Time : 1.34356
+
+
+ Simulation Statistics
+ Number of cells: 128
+ Number of compartments: 4576
+ Number of presyns: 144
+ Number of input presyns: 0
+ Number of synapses: 144
+ Number of point processes: 272
+ Number of transfer sources: 0
+ Number of transfer targets: 0
+ Number of spikes: 688
+ Number of spikes with non negative gid-s: 688
+ Info : 1 GPUs shared by 1 ranks per node
+ Memory (MBs) :             After mk_mech : Max 266.6133, Min 266.6133, Avg 266.6133 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :            After MPI_Init : Max 266.6133, Min 266.6133, Avg 266.6133 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :          Before nrn_setup : Max 266.6133, Min 266.6133, Avg 266.6133 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+best_balance=0.823583 ncell=128 ntype=16 nwarp=128
+ Setup Done   : 0.00 seconds 
+ Model size   : 1.14 MB
+ Memory (MBs) :          After nrn_setup  : Max 266.6758, Min 266.6758, Avg 266.6758 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=true
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=2
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 266.6758, Min 266.6758, Avg 266.6758 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+ Memory (MBs) :     After nrn_finitialize : Max 266.7500, Min 266.7500, Avg 266.7500 
+ GPU Memory (MiBs) : Used = 905.062500, Free = 6873.687500, Total = 7778.750000
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 100.00 ETA: 0h00m01sMULTI_PSOLVE i=2 runtime=1.3285 load_balance=0.0% avg_comp_time=0
+MULTI_PSOLVE_DONE n=3
+
+
+Solver Time : 1.32026
+
+
+ Simulation Statistics
+ Number of cells: 128
+ Number of compartments: 4576
+ Number of presyns: 144
+ Number of input presyns: 0
+ Number of synapses: 144
+ Number of point processes: 272
+ Number of transfer sources: 0
+ Number of transfer targets: 0
+ Number of spikes: 688
+ Number of spikes with non negative gid-s: 688

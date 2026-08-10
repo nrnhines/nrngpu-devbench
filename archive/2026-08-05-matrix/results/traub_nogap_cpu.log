@@ -1,0 +1,390 @@
+NEURON -- VERSION 9.0.1-354-ga6c6d3d70 local/gpu-native (a6c6d3d70+) 2026-08-04
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+Additional mechanisms from files
+ "./alphasyndiffeq.mod" "./alphasynkin.mod" "./alphasynkint.mod" "./ampa.mod" "./ar.mod" "./cad.mod" "./cal.mod" "./cat_a.mod" "./cat.mod" "./gabaa.mod" "./iclamp_const.mod" "./k2.mod" "./kahp_deeppyr.mod" "./kahp.mod" "./kahp_slower.mod" "./ka_ib.mod" "./ka.mod" "./kc_fast.mod" "./kc.mod" "./kdr_fs.mod" "./kdr.mod" "./km.mod" "./naf2.mod" "./naf.mod" "./naf_tcr.mod" "./napf.mod" "./napf_spinstell.mod" "./napf_tcr.mod" "./nap.mod" "./par_ggap.mod" "./pulsesyn.mod" "./rampsyn.mod" "./ri.mod" "./traub_nmda.mod"
+load_balance_phase  0 
+one_tenth_ncell  1 
+use_gap  0 
+use_ectopic  1 
+use_inject  1 
+awake  1 
+default_delay  0.5 
+ranseedbase  1 
+use_traubexact  0 
+wholecell_prefix  cxwhole
+multisplit_prefix  cx
+multisplit_nhost  256 
+msoptfactor  0.8 
+nthread  1 
+savestatetest  0 
+coreneuron  0 
+coreneuron_gpu  0 
+enable_gpu  0 
+gpu_backend  native
+gpu_download_flush  1 
+benchmark_quiet  1 
+prcellstate_gid  -1 
+prcellstate_checkpoint  -1 
+spike_compress  5 
+cacheeffic  1 
+multisend  0 
+selfevents  0 
+fakerank  -1 
+fakenhost  -1 
+n_multi_psolve  3 
+made it to end of network_specification_interface.hoc
+Initializing Network
+creating 356  cells:
+
+creating 100 suppyrRS cells
+creating 5 suppyrFRB cells
+creating 9 supbask cells
+creating 9 supaxax cells
+creating 9 supLTS cells
+creating 24 spinstell cells
+creating 80 tuftIB cells
+creating 20 tuftRS cells
+creating 50 nontuftRS cells
+creating 10 deepbask cells
+creating 10 deepaxax cells
+creating 10 deepLTS cells
+creating 10 TCR cells
+creating 10 nRT cells
+Done creating cells
+Constructing suppyrRS_to_suppyrRS maps
+Constructing suppyrRS_to_suppyrFRB maps.. and so forth
+constructing suppyrRS_to_nontuftRS
+constructing suppyrFRB_to_suppyrRS
+ finished construction of cell connection tables
+Starting construction of compartment map connection tables
+ calling  com_suppyrRS_to_suppyrRS = synaptic_compmap_construct
+...
+com_TCR_to_tuftRS
+Construct gap-junction tables
+Adding constant random current injections to the somas
+  of some cell types.
+Completed adding constant random current injections.
+Total number: syn_num = 5000 suppyrRS_to_suppyrRS synapses
+creating 100 NetStim's for suppyrRS cells
+creating 5 NetStim's for suppyrFRB cells
+creating 80 NetStim's for tuftIB cells
+creating 20 NetStim's for tuftRS cells
+creating 50 NetStim's for nontuftRS cells
+creating 10 NetStim's for TCR cells
+at end
+SetupTime: 1.944257 
+mytstop  100 
+	2 
+t=0 
+t=1 
+t=2 
+t=3 
+t=4 
+t=5 
+t=6 
+t=7 
+t=8 
+t=9 
+t=10 
+t=11 
+t=12 
+t=13 
+t=14 
+t=15 
+t=16 
+t=17 
+t=18 
+t=19 
+t=20 
+t=21 
+t=22 
+t=23 
+t=24 
+t=25 
+t=26 
+t=27 
+t=28 
+t=29 
+t=30 
+t=31 
+t=32 
+t=33 
+t=34 
+t=35 
+t=36 
+t=37 
+t=38 
+t=39 
+t=40 
+t=41 
+t=42 
+t=43 
+t=44 
+t=45 
+t=46 
+t=47 
+t=48 
+t=49 
+t=50 
+t=51 
+t=52 
+t=53 
+t=54 
+t=55 
+t=56 
+t=57 
+t=58 
+t=59 
+t=60 
+t=61 
+t=62 
+t=63 
+t=64 
+t=65 
+t=66 
+t=67 
+t=68 
+t=69 
+t=70 
+t=71 
+t=72 
+t=73 
+t=74 
+t=75 
+t=76 
+t=77 
+t=78 
+t=79 
+t=80 
+t=81 
+t=82 
+t=83 
+t=84 
+t=85 
+t=86 
+t=87 
+t=88 
+t=89 
+t=90 
+t=91 
+t=92 
+t=93 
+t=94 
+t=95 
+t=96 
+t=97 
+t=98 
+t=99 
+t=100 
+MULTI_PSOLVE i=0 runtime=35.0026
+BENCHMARK runtime=35.0026 setuptime=1.94426 ncell=356 enable_gpu=0 nhost=1 rep=0
+t=0 
+t=1 
+t=2 
+t=3 
+t=4 
+t=5 
+t=6 
+t=7 
+t=8 
+t=9 
+t=10 
+t=11 
+t=12 
+t=13 
+t=14 
+t=15 
+t=16 
+t=17 
+t=18 
+t=19 
+t=20 
+t=21 
+t=22 
+t=23 
+t=24 
+t=25 
+t=26 
+t=27 
+t=28 
+t=29 
+t=30 
+t=31 
+t=32 
+t=33 
+t=34 
+t=35 
+t=36 
+t=37 
+t=38 
+t=39 
+t=40 
+t=41 
+t=42 
+t=43 
+t=44 
+t=45 
+t=46 
+t=47 
+t=48 
+t=49 
+t=50 
+t=51 
+t=52 
+t=53 
+t=54 
+t=55 
+t=56 
+t=57 
+t=58 
+t=59 
+t=60 
+t=61 
+t=62 
+t=63 
+t=64 
+t=65 
+t=66 
+t=67 
+t=68 
+t=69 
+t=70 
+t=71 
+t=72 
+t=73 
+t=74 
+t=75 
+t=76 
+t=77 
+t=78 
+t=79 
+t=80 
+t=81 
+t=82 
+t=83 
+t=84 
+t=85 
+t=86 
+t=87 
+t=88 
+t=89 
+t=90 
+t=91 
+t=92 
+t=93 
+t=94 
+t=95 
+t=96 
+t=97 
+t=98 
+t=99 
+t=100 
+MULTI_PSOLVE i=1 runtime=34.2342
+BENCHMARK runtime=34.2342 setuptime=1.94426 ncell=356 enable_gpu=0 nhost=1 rep=1
+t=0 
+t=1 
+t=2 
+t=3 
+t=4 
+t=5 
+t=6 
+t=7 
+t=8 
+t=9 
+t=10 
+t=11 
+t=12 
+t=13 
+t=14 
+t=15 
+t=16 
+t=17 
+t=18 
+t=19 
+t=20 
+t=21 
+t=22 
+t=23 
+t=24 
+t=25 
+t=26 
+t=27 
+t=28 
+t=29 
+t=30 
+t=31 
+t=32 
+t=33 
+t=34 
+t=35 
+t=36 
+t=37 
+t=38 
+t=39 
+t=40 
+t=41 
+t=42 
+t=43 
+t=44 
+t=45 
+t=46 
+t=47 
+t=48 
+t=49 
+t=50 
+t=51 
+t=52 
+t=53 
+t=54 
+t=55 
+t=56 
+t=57 
+t=58 
+t=59 
+t=60 
+t=61 
+t=62 
+t=63 
+t=64 
+t=65 
+t=66 
+t=67 
+t=68 
+t=69 
+t=70 
+t=71 
+t=72 
+t=73 
+t=74 
+t=75 
+t=76 
+t=77 
+t=78 
+t=79 
+t=80 
+t=81 
+t=82 
+t=83 
+t=84 
+t=85 
+t=86 
+t=87 
+t=88 
+t=89 
+t=90 
+t=91 
+t=92 
+t=93 
+t=94 
+t=95 
+t=96 
+t=97 
+t=98 
+t=99 
+t=100 
+MULTI_PSOLVE i=2 runtime=34.1505
+BENCHMARK runtime=34.1505 setuptime=1.94426 ncell=356 enable_gpu=0 nhost=1 rep=2
+tstop = 100 
+MULTI_PSOLVE_DONE n=3

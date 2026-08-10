@@ -1,0 +1,18 @@
+NEURON -- VERSION 9.0.1-354-ga6c6d3d70 local/gpu-native (a6c6d3d70+) 2026-08-04
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+Additional mechanisms from files
+
+[10, 20] [1, 1]
+nring=16
+cell per ring=8
+ncell_per_type=8
+ntype=16
+method = fixed 
+123456789101112131415160.0346255s created rings
+0.0208695s initialized
+MULTI_PSOLVE i=0 runtime=0.48277 load_balance=100.0% avg_comp_time=0.4827
+MULTI_PSOLVE i=1 runtime=0.482559 load_balance=100.0% avg_comp_time=0.965211
+MULTI_PSOLVE i=2 runtime=0.482847 load_balance=100.0% avg_comp_time=1.44799
+MULTI_PSOLVE_DONE n=3

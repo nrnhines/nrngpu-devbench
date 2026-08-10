@@ -7,6 +7,12 @@ campaigns/**/*.csv
 !campaigns/**/SUMMARY.md
 !campaigns/**/.gitkeep
 
+# Frozen archives are historical evidence (tracked)
+!archive/
+!archive/**
+!archive/**/results/
+!archive/**/*.log
+
 # Editor / OS
 *~
 .DS_Store

@@ -1,0 +1,2502 @@
+NEURON -- VERSION 9.0.1-354-ga6c6d3d70 local/gpu-native (a6c6d3d70+) 2026-08-04
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+Additional mechanisms from files
+ "./Aradi_CadepK.mod" "./Aradi_Ca.mod" "./Aradi_KA.mod" "./Aradi_KDRf.mod" "./Aradi_KDRs.mod" "./Aradi_Na.mod" "./bgka.mod" "./CaBK.mod" "./ccanl.mod" "./DGC_M.mod" "./DGC_sAHP.mod" "./DGC_UK.mod" "./Gfluct3.mod" "./ggap.mod" "./gskch.mod" "./holdingi.mod" "./hyperde3.mod" "./ichan2.mod" "./iconc_Ca.mod" "./kcaPR.mod" "./LcaMig.mod" "./na3n.mod" "./nca.mod" "./SH_KIn.mod" "./SH_na8st.mod" "./spines.mod" "./tca.mod" "./vecevent.mod"
+coredat  coredat
+outdir  .
+mytstop  10 
+coreneuron  1 
+gpu  0 
+dumpmodel  0 
+max_cells_per_type  100 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+	1 
+Cell type GC:
+DGC[0].soma[0] { nseg=1  L=18.6  Ra=194
+	/*location 0 attached to cell 0*/
+	/* First segment only */
+	insert morphology { diam=10.3}
+	insert capacitance { cm=1}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert na8st { gbar_na8st=24 a1_0_na8st=45.9087 a1_1_na8st=0.0238922 b1_0_na8st=0.0143658 b1_1_na8st=0.0886487 a2_0_na8st=19.8609 a2_1_na8st=0.0222044 b2_0_na8st=0.563373 b2_1_na8st=0.0611952 a3_0_na8st=71.829 a3_1_na8st=0.0658952 b3_0_na8st=0.754855 b3_1_na8st=0.0364611 bh_0_na8st=2.83275 bh_1_na8st=0.288669 bh_2_na8st=0.0696218 ah_0_na8st=0.597889 ah_1_na8st=178.583 ah_2_na8st=0.0268108 vShift_inact_local_na8st=10}
+	insert na_ion { ena=55}
+	insert Aradi_Ca { gtcabar_Aradi_Ca=0.01 gncabar_Aradi_Ca=0.01 glcabar_Aradi_Ca=0.01}
+	insert CadepK { gbkbar_CadepK=0.0045 gskbar_CadepK=0.001 ask_CadepK=1 bsk_CadepK=1}
+	insert fKDR { gbar_fKDR=0.0216}
+	insert sKDR { gbar_sKDR=0.0054}
+	insert KA { gbar_KA=0.01}
+	insert sAHP { gbar_sAHP=20}
+	insert k_ion { ek=-90}
+	insert UK { gbar_UK=20}
+	insert ca_ion {}
+	insert Exp2Syn { tau1=0.25 tau2=2.5 e=-75}
+	insert Exp2Syn { tau1=1 tau2=10 e=0}
+	insert ExpSyn { tau=1 e=0}
+	insert Exp2Syn { tau1=1.5 tau2=5.5 e=0}
+	insert Exp2Syn { tau1=1.5 tau2=5.5 e=0}
+	insert Exp2Syn { tau1=0.05 tau2=1.25 e=-85.7}
+	insert Exp2Syn { tau1=0.25 tau2=2.5 e=-28.99}
+	insert Exp2Syn { tau1=0.3 tau2=2.9 e=-28.99}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-28.99}
+	insert Exp2Syn { tau1=0.1 tau2=10 e=-38.148}
+	insert Exp2Syn { tau1=86.8 tau2=428.1 e=-90}
+}
+DGC[0].axon[0] { nseg=1  L=10  Ra=184.372
+	DGC[0].soma[0] connect DGC[0].axon[0] (1), 0
+	/* First segment only */
+	insert morphology { diam=2.3}
+	insert capacitance { cm=1}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert na8st { gbar_na8st=134.185 a1_0_na8st=59.5834 a1_1_na8st=0.0138548 b1_0_na8st=0.00421223 b1_1_na8st=0.128735 a2_0_na8st=32.0511 a2_1_na8st=0.0285369 b2_0_na8st=0.181358 b2_1_na8st=0.0870235 a3_0_na8st=75.8069 a3_1_na8st=0.0559679 b3_0_na8st=1.15837 b3_1_na8st=0.0321226 bh_0_na8st=3.43801 bh_1_na8st=0.210776 bh_2_na8st=0.0739872 ah_0_na8st=5.73213 ah_1_na8st=3834.71 ah_2_na8st=0.0290758 vShift_inact_local_na8st=10}
+	insert na_ion { ena=55}
+	insert fKDR { gbar_fKDR=0.0378}
+	insert KA { gbar_KA=0.04}
+	insert KM { erev_KM=-90 gbar_KM=20 k_KM=9 Vhalf_KM=-50 Vshift_KM=0 v0erev_KM=65 kV_KM=40 gamma_KM=0.5 taudiv_KM=1 Dtaumult1_KM=30 Dtaumult2_KM=30 tau0mult_KM=1}
+	insert k_ion {}
+	insert Exp2Syn { tau1=0.3 tau2=2.9 e=-75}
+}
+DGC[0].axon[1] { nseg=1  L=10  Ra=184.372
+	DGC[0].axon[0] connect DGC[0].axon[1] (0), 1
+	/* First segment only */
+	insert morphology { diam=1.2}
+	insert capacitance { cm=1}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert na8st { gbar_na8st=134.185 a1_0_na8st=59.5834 a1_1_na8st=0.0138548 b1_0_na8st=0.00421223 b1_1_na8st=0.128735 a2_0_na8st=32.0511 a2_1_na8st=0.0285369 b2_0_na8st=0.181358 b2_1_na8st=0.0870235 a3_0_na8st=75.8069 a3_1_na8st=0.0559679 b3_0_na8st=1.15837 b3_1_na8st=0.0321226 bh_0_na8st=3.43801 bh_1_na8st=0.210776 bh_2_na8st=0.0739872 ah_0_na8st=5.73213 ah_1_na8st=3834.71 ah_2_na8st=0.0290758 vShift_inact_local_na8st=10}
+	insert na_ion { ena=55}
+	insert fKDR { gbar_fKDR=0.0378}
+	insert KA { gbar_KA=0.04}
+	insert KM { erev_KM=-90 gbar_KM=20 k_KM=9 Vhalf_KM=-50 Vshift_KM=0 v0erev_KM=65 kV_KM=40 gamma_KM=0.5 taudiv_KM=1 Dtaumult1_KM=30 Dtaumult2_KM=30 tau0mult_KM=1}
+	insert k_ion {}
+	insert Exp2Syn { tau1=0.3 tau2=2.9 e=-75}
+	insert Exp2Syn { tau1=0.3 tau2=2.9 e=-75}
+	insert Exp2Syn { tau1=0.3 tau2=2.9 e=-75}
+}
+DGC[0].axon[2] { nseg=1  L=10  Ra=182.57
+	DGC[0].axon[1] connect DGC[0].axon[2] (0), 1
+	/* First segment only */
+	insert morphology { diam=0.8}
+	insert capacitance { cm=1}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert na8st { gbar_na8st=93.7113 a1_0_na8st=62.6225 a1_1_na8st=0.0116241 b1_0_na8st=0.00195564 b1_1_na8st=0.137645 a2_0_na8st=34.7603 a2_1_na8st=0.0299443 b2_0_na8st=0.0964559 b2_1_na8st=0.0927638 a3_0_na8st=76.691 a3_1_na8st=0.0537615 b3_0_na8st=1.24805 b3_1_na8st=0.0311584 bh_0_na8st=3.57253 bh_1_na8st=0.193465 bh_2_na8st=0.0749574 ah_0_na8st=6.8732 ah_1_na8st=4647.28 ah_2_na8st=0.0295792 vShift_inact_local_na8st=10}
+	insert na_ion { ena=55}
+	insert fKDR { gbar_fKDR=0.0378}
+	insert KA { gbar_KA=0.04}
+	insert KM { erev_KM=-90 gbar_KM=20 k_KM=9 Vhalf_KM=-50 Vshift_KM=0 v0erev_KM=65 kV_KM=40 gamma_KM=0.5 taudiv_KM=1 Dtaumult1_KM=30 Dtaumult2_KM=30 tau0mult_KM=1}
+	insert k_ion {}
+}
+DGC[0].axon[3] { nseg=39  L=1000  Ra=120.017
+	DGC[0].axon[2] connect DGC[0].axon[3] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.3}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert na8st { gbar_na8st=48.4676 a1_0_na8st=62.6477 a1_1_na8st=0.0116056 b1_0_na8st=0.00193691 b1_1_na8st=0.137719 a2_0_na8st=34.7828 a2_1_na8st=0.0299559 b2_0_na8st=0.0957516 b2_1_na8st=0.0928114 a3_0_na8st=76.6983 a3_1_na8st=0.0537432 b3_0_na8st=1.24879 b3_1_na8st=0.0311504 bh_0_na8st=3.57364 bh_1_na8st=0.193321 bh_2_na8st=0.0749654 ah_0_na8st=6.88267 ah_1_na8st=4654.02 ah_2_na8st=0.0295833 vShift_inact_local_na8st=10}
+	insert na_ion { ena=55}
+	insert fKDR { gbar_fKDR=0.0378}
+	insert KA { gbar_KA=0.04}
+	insert KM { erev_KM=-90 gbar_KM=20 k_KM=9 Vhalf_KM=-50 Vshift_KM=0 v0erev_KM=65 kV_KM=40 gamma_KM=0.5 taudiv_KM=1 Dtaumult1_KM=30 Dtaumult2_KM=30 tau0mult_KM=1}
+	insert k_ion {}
+}
+DGC[0].dendrites[0] { nseg=3  L=76.8772  Ra=194
+	DGC[0].soma[0] connect DGC[0].dendrites[0] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=1.10222}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert Exp2Syn { tau1=0.25 tau2=2.5 e=-75}
+}
+DGC[0].dendrites[1] { nseg=1  L=39.9923  Ra=194
+	DGC[0].dendrites[0] connect DGC[0].dendrites[1] (0), 1
+	/* First segment only */
+	insert morphology { diam=0.746065}
+	insert capacitance { cm=1}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[2] { nseg=5  L=126.466  Ra=194
+	DGC[0].dendrites[1] connect DGC[0].dendrites[2] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.72493}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[3] { nseg=3  L=91.3195  Ra=194
+	DGC[0].dendrites[2] connect DGC[0].dendrites[3] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.662401}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[4] { nseg=3  L=55.6754  Ra=194
+	DGC[0].dendrites[1] connect DGC[0].dendrites[4] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1.5}
+	insert morphology { diam=0.725678}
+	insert spines { scale_spines=1.5 count_spines=0}
+	insert pas { g_pas=6.75e-05 e_pas=-70}
+}
+DGC[0].dendrites[5] { nseg=5  L=146.159  Ra=194
+	DGC[0].dendrites[4] connect DGC[0].dendrites[5] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1.5}
+	insert morphology { diam=0.692523}
+	insert spines { scale_spines=1.5 count_spines=0}
+	insert pas { g_pas=6.75e-05 e_pas=-70}
+}
+DGC[0].dendrites[6] { nseg=5  L=139.434  Ra=194
+	DGC[0].dendrites[4] connect DGC[0].dendrites[6] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2}
+	insert morphology { diam=0.69019}
+	insert spines { scale_spines=2 count_spines=0}
+	insert pas { g_pas=9e-05 e_pas=-70}
+}
+DGC[0].dendrites[7] { nseg=1  L=10.5563  Ra=194
+	DGC[0].dendrites[0] connect DGC[0].dendrites[7] (0), 1
+	/* First segment only */
+	insert morphology { diam=0.760988}
+	insert capacitance { cm=1.5}
+	insert spines { scale_spines=1.5 count_spines=0}
+	insert pas { g_pas=6.75e-05 e_pas=-70}
+	insert Exp2Syn { tau1=1.5 tau2=5.5 e=0}
+}
+DGC[0].dendrites[8] { nseg=3  L=72.5975  Ra=194
+	DGC[0].dendrites[7] connect DGC[0].dendrites[8] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1.5}
+	insert morphology { diam=0.748771}
+	insert spines { scale_spines=1.5 count_spines=0}
+	insert pas { g_pas=6.75e-05 e_pas=-70}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-75}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-75}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-75}
+}
+DGC[0].dendrites[9] { nseg=5  L=142.358  Ra=194
+	DGC[0].dendrites[8] connect DGC[0].dendrites[9] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2.5}
+	insert morphology { diam=0.69433}
+	insert spines { scale_spines=2.5 count_spines=0}
+	insert pas { g_pas=0.0001125 e_pas=-70}
+	insert Exp2Syn { tau1=0.1 tau2=10 e=-75}
+	insert Exp2Syn { tau1=86.8 tau2=428.1 e=-90}
+}
+DGC[0].dendrites[10] { nseg=5  L=181.515  Ra=194
+	DGC[0].dendrites[8] connect DGC[0].dendrites[10] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.71067}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+	insert Exp2Syn { tau1=0.05 tau2=1.25 e=-75}
+}
+DGC[0].dendrites[11] { nseg=3  L=63.6441  Ra=194
+	DGC[0].dendrites[7] connect DGC[0].dendrites[11] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2}
+	insert morphology { diam=0.751099}
+	insert spines { scale_spines=2 count_spines=0}
+	insert pas { g_pas=9e-05 e_pas=-70}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-75}
+	insert Exp2Syn { tau1=0.04 tau2=1.1 e=-75}
+}
+DGC[0].dendrites[12] { nseg=5  L=158.717  Ra=194
+	DGC[0].dendrites[11] connect DGC[0].dendrites[12] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.701029}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[13] { nseg=5  L=195.37  Ra=194
+	DGC[0].dendrites[11] connect DGC[0].dendrites[13] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.715071}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[14] { nseg=3  L=80.0616  Ra=194
+	DGC[0].soma[0] connect DGC[0].dendrites[14] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2}
+	insert morphology { diam=1.08897}
+	insert spines { scale_spines=2 count_spines=0}
+	insert pas { g_pas=9e-05 e_pas=-70}
+	insert Exp2Syn { tau1=0.25 tau2=2.5 e=-75}
+	insert Exp2Syn { tau1=0.25 tau2=2.5 e=-75}
+}
+DGC[0].dendrites[15] { nseg=3  L=60.2465  Ra=194
+	DGC[0].dendrites[14] connect DGC[0].dendrites[15] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2.5}
+	insert morphology { diam=0.747304}
+	insert spines { scale_spines=2.5 count_spines=0}
+	insert pas { g_pas=0.0001125 e_pas=-70}
+}
+DGC[0].dendrites[16] { nseg=5  L=167.241  Ra=194
+	DGC[0].dendrites[15] connect DGC[0].dendrites[16] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.702864}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[17] { nseg=5  L=168.217  Ra=194
+	DGC[0].dendrites[15] connect DGC[0].dendrites[17] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.705526}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[18] { nseg=1  L=14.9273  Ra=194
+	DGC[0].dendrites[14] connect DGC[0].dendrites[18] (0), 1
+	/* First segment only */
+	insert morphology { diam=0.753754}
+	insert capacitance { cm=1}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[19] { nseg=5  L=170.383  Ra=194
+	DGC[0].dendrites[18] connect DGC[0].dendrites[19] (0), 1
+	/* First segment only */
+	insert capacitance { cm=2}
+	insert morphology { diam=0.749895}
+	insert spines { scale_spines=2 count_spines=0}
+	insert pas { g_pas=9e-05 e_pas=-70}
+}
+DGC[0].dendrites[20] { nseg=3  L=108.434  Ra=194
+	DGC[0].dendrites[19] connect DGC[0].dendrites[20] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.665837}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[21] { nseg=3  L=84.203  Ra=194
+	DGC[0].dendrites[19] connect DGC[0].dendrites[21] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.667184}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[22] { nseg=5  L=162.623  Ra=194
+	DGC[0].dendrites[18] connect DGC[0].dendrites[22] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.713002}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+DGC[0].dendrites[23] { nseg=3  L=85.7182  Ra=194
+	DGC[0].dendrites[2] connect DGC[0].dendrites[23] (0), 1
+	/* First segment only */
+	insert capacitance { cm=1}
+	insert morphology { diam=0.662716}
+	insert spines { scale_spines=1 count_spines=0}
+	insert pas { g_pas=4.5e-05 e_pas=-70}
+}
+	1 
+Cell type MC:
+MossyCell[0].soma { nseg=1  L=20  Ra=100
+	/*location 0 attached to cell 10*/
+	/* First segment only */
+	insert morphology { diam=20}
+	insert capacitance { cm=1.6}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.32 gkfbar_ichan2=0.0005 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Gfluct3 { on=1 h=0.25 E_e=0 E_i=-75 g_e0=0.023 g_i0=0.0573 std_e=0.003 std_i=0.0066 tau_e=2.728 tau_i=10.49}
+	insert ExpSyn { tau=1 e=0}
+	insert Exp2Syn { tau1=0.3 tau2=3.3 e=-70}
+	insert Exp2Syn { tau1=0.3 tau2=3.3 e=-70}
+}
+MossyCell[0].dendrites[0][0] { nseg=1  L=24  Ra=100
+	MossyCell[0].soma connect MossyCell[0].dendrites[0][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=5.78}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.0005 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[0][1] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[0][0] connect MossyCell[0].dendrites[0][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[0][2] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[0][1] connect MossyCell[0].dendrites[0][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2.5}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[0][3] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[0][2] connect MossyCell[0].dendrites[0][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[1][0] { nseg=1  L=24  Ra=100
+	MossyCell[0].soma connect MossyCell[0].dendrites[1][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=5.78}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.0005 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.45 tau2=2.2 e=0}
+}
+MossyCell[0].dendrites[1][1] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[1][0] connect MossyCell[0].dendrites[1][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[1][2] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[1][1] connect MossyCell[0].dendrites[1][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2.5}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.5 tau2=6 e=-70}
+}
+MossyCell[0].dendrites[1][3] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[1][2] connect MossyCell[0].dendrites[1][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[2][0] { nseg=1  L=24  Ra=100
+	MossyCell[0].soma connect MossyCell[0].dendrites[2][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=5.78}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.0005 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.5 tau2=6.2 e=0}
+}
+MossyCell[0].dendrites[2][1] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[2][0] connect MossyCell[0].dendrites[2][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[2][2] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[2][1] connect MossyCell[0].dendrites[2][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2.5}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.6 tau2=4.7 e=-70}
+}
+MossyCell[0].dendrites[2][3] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[2][2] connect MossyCell[0].dendrites[2][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[3][0] { nseg=1  L=24  Ra=100
+	MossyCell[0].soma connect MossyCell[0].dendrites[3][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=5.78}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.0005 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[3][1] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[3][0] connect MossyCell[0].dendrites[3][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[3][2] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[3][1] connect MossyCell[0].dendrites[3][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2.5}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+MossyCell[0].dendrites[3][3] { nseg=1  L=24  Ra=100
+	MossyCell[0].dendrites[3][2] connect MossyCell[0].dendrites[3][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=2.4}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0001}
+	insert nca { gncabar_nca=8e-05}
+	insert lca { glcabar_lca=0.0006}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.016}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0165}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=5e-06 ghysbar_hyperde3=5e-06 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+	1 
+Cell type HC:
+HIPPCell[0].soma { nseg=1  L=20  Ra=100
+	/*location 0 attached to cell 110*/
+	/* First segment only */
+	insert morphology { diam=10}
+	insert capacitance { cm=0.5}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.2 gkfbar_ichan2=0.006 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert ExpSyn { tau=1 e=0}
+}
+HIPPCell[0].dendrites[0][0] { nseg=1  L=75  Ra=100
+	HIPPCell[0].soma connect HIPPCell[0].dendrites[0][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.2 gkfbar_ichan2=0.006 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.37 tau2=10.48 e=-70}
+}
+HIPPCell[0].dendrites[0][1] { nseg=1  L=75  Ra=100
+	HIPPCell[0].dendrites[0][0] connect HIPPCell[0].dendrites[0][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.265 tau2=2.88 e=-70}
+}
+HIPPCell[0].dendrites[0][2] { nseg=1  L=75  Ra=100
+	HIPPCell[0].dendrites[0][1] connect HIPPCell[0].dendrites[0][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[1][0] { nseg=1  L=75  Ra=100
+	HIPPCell[0].soma connect HIPPCell[0].dendrites[1][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.2 gkfbar_ichan2=0.006 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.3 tau2=0.6 e=0}
+}
+HIPPCell[0].dendrites[1][1] { nseg=1  L=75  Ra=100
+	HIPPCell[0].dendrites[1][0] connect HIPPCell[0].dendrites[1][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.9 tau2=3.6 e=0}
+}
+HIPPCell[0].dendrites[1][2] { nseg=1  L=75  Ra=100
+	HIPPCell[0].dendrites[1][1] connect HIPPCell[0].dendrites[1][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[2][0] { nseg=1  L=50  Ra=100
+	HIPPCell[0].soma connect HIPPCell[0].dendrites[2][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.2 gkfbar_ichan2=0.006 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[2][1] { nseg=1  L=50  Ra=100
+	HIPPCell[0].dendrites[2][0] connect HIPPCell[0].dendrites[2][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[2][2] { nseg=1  L=50  Ra=100
+	HIPPCell[0].dendrites[2][1] connect HIPPCell[0].dendrites[2][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[3][0] { nseg=1  L=50  Ra=100
+	HIPPCell[0].soma connect HIPPCell[0].dendrites[3][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0.2 gkfbar_ichan2=0.006 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[3][1] { nseg=1  L=50  Ra=100
+	HIPPCell[0].dendrites[3][0] connect HIPPCell[0].dendrites[3][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+HIPPCell[0].dendrites[3][2] { nseg=1  L=50  Ra=100
+	HIPPCell[0].dendrites[3][1] connect HIPPCell[0].dendrites[3][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.1}
+	insert ccanl { catau_ccanl=1 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.0008}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.003}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.003}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert hyperde3 { ghyfbar_hyperde3=1.5e-05 ghysbar_hyperde3=1.5e-05 ghyhtfbar_hyperde3=0 ghyhtsbar_hyperde3=0}
+	insert hyf_ion { ehyf=-40}
+	insert hys_ion { ehys=-40}
+	insert hyhtf_ion { ehyhtf=0}
+	insert hyhts_ion { ehyhts=0}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+	1 
+Cell type BC:
+BasketCell[0].soma { nseg=1  L=20  Ra=100
+	/*location 0 attached to cell 204*/
+	/* First segment only */
+	insert morphology { diam=20}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert ExpSyn { tau=2 e=0}
+}
+BasketCell[0].dendrites[0][0] { nseg=1  L=75  Ra=100
+	BasketCell[0].soma connect BasketCell[0].dendrites[0][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[0][1] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[0][0] connect BasketCell[0].dendrites[0][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.9 tau2=3.6 e=0}
+	insert Exp2Syn { tau1=0.6 tau2=4.78 e=-70}
+}
+BasketCell[0].dendrites[0][2] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[0][1] connect BasketCell[0].dendrites[0][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[0][3] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[0][2] connect BasketCell[0].dendrites[0][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.46 tau2=4.43 e=-70}
+	insert Exp2Syn { tau1=4.2 tau2=14 e=-70}
+}
+BasketCell[0].dendrites[1][0] { nseg=1  L=75  Ra=100
+	BasketCell[0].soma connect BasketCell[0].dendrites[1][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[1][1] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[1][0] connect BasketCell[0].dendrites[1][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.22 tau2=3.35 e=-70}
+}
+BasketCell[0].dendrites[1][2] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[1][1] connect BasketCell[0].dendrites[1][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[1][3] { nseg=1  L=75  Ra=100
+	BasketCell[0].dendrites[1][2] connect BasketCell[0].dendrites[1][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=86.8 tau2=428.1 e=-90}
+}
+BasketCell[0].dendrites[2][0] { nseg=1  L=50  Ra=100
+	BasketCell[0].soma connect BasketCell[0].dendrites[2][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.3 tau2=0.6 e=0}
+}
+BasketCell[0].dendrites[2][1] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[2][0] connect BasketCell[0].dendrites[2][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[2][2] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[2][1] connect BasketCell[0].dendrites[2][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[2][3] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[2][2] connect BasketCell[0].dendrites[2][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[3][0] { nseg=1  L=50  Ra=100
+	BasketCell[0].soma connect BasketCell[0].dendrites[3][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[3][1] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[3][0] connect BasketCell[0].dendrites[3][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[3][2] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[3][1] connect BasketCell[0].dendrites[3][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+BasketCell[0].dendrites[3][3] { nseg=1  L=50  Ra=100
+	BasketCell[0].dendrites[3][2] connect BasketCell[0].dendrites[3][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=0.5 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+	1 
+Cell type AAC:
+AxoAxonicCell[0].soma { nseg=1  L=20  Ra=100
+	/*location 0 attached to cell 269*/
+	/* First segment only */
+	insert morphology { diam=15}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert ExpSyn { tau=1 e=0}
+}
+AxoAxonicCell[0].dendrites[0][0] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].soma connect AxoAxonicCell[0].dendrites[0][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[0][1] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[0][0] connect AxoAxonicCell[0].dendrites[0][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.9 tau2=3.6 e=0}
+}
+AxoAxonicCell[0].dendrites[0][2] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[0][1] connect AxoAxonicCell[0].dendrites[0][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[0][3] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[0][2] connect AxoAxonicCell[0].dendrites[0][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.46 tau2=4.43 e=-70}
+	insert Exp2Syn { tau1=4.2 tau2=14 e=-70}
+	insert Exp2Syn { tau1=86.8 tau2=428.1 e=-90}
+}
+AxoAxonicCell[0].dendrites[1][0] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].soma connect AxoAxonicCell[0].dendrites[1][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert Exp2Syn { tau1=0.3 tau2=0.6 e=0}
+}
+AxoAxonicCell[0].dendrites[1][1] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[1][0] connect AxoAxonicCell[0].dendrites[1][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[1][2] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[1][1] connect AxoAxonicCell[0].dendrites[1][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[1][3] { nseg=1  L=75  Ra=100
+	AxoAxonicCell[0].dendrites[1][2] connect AxoAxonicCell[0].dendrites[1][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[2][0] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].soma connect AxoAxonicCell[0].dendrites[2][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[2][1] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[2][0] connect AxoAxonicCell[0].dendrites[2][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[2][2] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[2][1] connect AxoAxonicCell[0].dendrites[2][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[2][3] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[2][2] connect AxoAxonicCell[0].dendrites[2][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[3][0] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].soma connect AxoAxonicCell[0].dendrites[3][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=4}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0.12 gkfbar_ichan2=0.013 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[3][1] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[3][0] connect AxoAxonicCell[0].dendrites[3][1] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[3][2] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[3][1] connect AxoAxonicCell[0].dendrites[3][2] (0), 1
+	/* First segment only */
+	insert morphology { diam=2}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+AxoAxonicCell[0].dendrites[3][3] { nseg=1  L=50  Ra=100
+	AxoAxonicCell[0].dendrites[3][2] connect AxoAxonicCell[0].dendrites[3][3] (0), 1
+	/* First segment only */
+	insert morphology { diam=1}
+	insert capacitance { cm=1.4}
+	insert ccanl { catau_ccanl=10 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=0.00015}
+	insert nca { gncabar_nca=0.0008}
+	insert lca { glcabar_lca=0.005}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=2e-06}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=0.0002}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0 gksbar_ichan2=0}
+	insert nat_ion { enat=55}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+}
+	1 
+Cell type NGFC:
+NGFCell[0].soma { nseg=1  L=20  Ra=100
+	/*location 0 attached to cell 297*/
+	/* First segment only */
+	insert morphology { diam=20}
+	insert capacitance { cm=1.329}
+	insert ccanl { catau_ccanl=6 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=1e-05}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.00475}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=1e-05}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0.0132 gksbar_ichan2=0}
+	insert nat_ion { enat=0}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert na3 { gbar_na3=0.05 ar_na3=1}
+	insert na_ion { ena=55}
+	insert ExpSyn { tau=1 e=0}
+}
+NGFCell[0].dendrites[0][0] { nseg=1  L=100  Ra=100
+	NGFCell[0].soma connect NGFCell[0].dendrites[0][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.329}
+	insert ccanl { catau_ccanl=6 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=2e-06}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.00475}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=1e-05}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0.00264 gksbar_ichan2=0}
+	insert nat_ion { enat=0}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert na3 { gbar_na3=0.01 ar_na3=1}
+	insert na_ion { ena=55}
+}
+NGFCell[0].dendrites[1][0] { nseg=1  L=100  Ra=100
+	NGFCell[0].soma connect NGFCell[0].dendrites[1][0] (0), 1
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.329}
+	insert ccanl { catau_ccanl=6 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=2e-06}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.00475}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=1e-05}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0.00264 gksbar_ichan2=0}
+	insert nat_ion { enat=0}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert na3 { gbar_na3=0.01 ar_na3=1}
+	insert na_ion { ena=55}
+	insert Exp2Syn { tau1=0.72 tau2=10 e=-70}
+}
+NGFCell[0].dendrites[2][0] { nseg=1  L=100  Ra=100
+	NGFCell[0].soma connect NGFCell[0].dendrites[2][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.329}
+	insert ccanl { catau_ccanl=6 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=2e-06}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.00475}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=1e-05}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0.00264 gksbar_ichan2=0}
+	insert nat_ion { enat=0}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert na3 { gbar_na3=0.01 ar_na3=1}
+	insert na_ion { ena=55}
+	insert Exp2Syn { tau1=86.8 tau2=428.1 e=-90}
+}
+NGFCell[0].dendrites[3][0] { nseg=1  L=100  Ra=100
+	NGFCell[0].soma connect NGFCell[0].dendrites[3][0] (0), 0
+	/* First segment only */
+	insert morphology { diam=3}
+	insert capacitance { cm=1.329}
+	insert ccanl { catau_ccanl=6 caiinf_ccanl=5e-06}
+	insert borgka { gkabar_borgka=2e-06}
+	insert nca { gncabar_nca=0}
+	insert lca { glcabar_lca=0.0015}
+	insert ca_ion { cai=5e-05 cao=2}
+	insert gskch { gskbar_gskch=0.00475}
+	insert sk_ion { esk=-90}
+	insert cagk { gkbar_cagk=1e-05}
+	insert nca_ion {}
+	insert lca_ion {}
+	insert tca_ion {}
+	insert k_ion { ek=-90}
+	insert ichan2 { gnatbar_ichan2=0 gkfbar_ichan2=0.00264 gksbar_ichan2=0}
+	insert nat_ion { enat=0}
+	insert kf_ion { ekf=-90}
+	insert ks_ion { eks=0}
+	insert na3 { gbar_na3=0.01 ar_na3=1}
+	insert na_ion { ena=55}
+	insert Exp2Syn { tau1=4.5 tau2=13.8 e=-70}
+}
+	1 
+*** Cells created in 0 seconds
+connectivityName = AACtoGC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 4
+pnm.nclist.count() = 0
+presynaptic population = AAC
+presynaptic size = 28
+postsynaptic population = GC
+postsynaptic size = 10
+connectivityName = BCtoGC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 3
+pnm.nclist.count() = 0
+presynaptic population = BC
+presynaptic size = 65
+postsynaptic population = GC
+postsynaptic size = 10
+connectivityName = HCtoGC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 2
+pnm.nclist.count() = 70
+presynaptic population = HC
+presynaptic size = 94
+postsynaptic population = GC
+postsynaptic size = 10
+connectivityName = MCtoGC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 1
+pnm.nclist.count() = 166
+presynaptic population = MC
+presynaptic size = 100
+postsynaptic population = GC
+postsynaptic size = 10
+connectivityName = NGFCtoGC
+wdType = 2
+synType.is_number = 0 
+synType.is_list = 1 
+pnm.nclist.count() = 277
+presynaptic population = NGFC
+presynaptic size = 100
+postsynaptic population = GC
+postsynaptic size = 10
+connectivityName = AACtoMC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 4
+pnm.nclist.count() = 533
+presynaptic population = AAC
+presynaptic size = 28
+postsynaptic population = MC
+postsynaptic size = 100
+connectivityName = BCtoMC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 3
+pnm.nclist.count() = 533
+presynaptic population = BC
+presynaptic size = 65
+postsynaptic population = MC
+postsynaptic size = 100
+connectivityName = GCtoMC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 0
+pnm.nclist.count() = 13287
+presynaptic population = GC
+presynaptic size = 10
+postsynaptic population = MC
+postsynaptic size = 100
+connectivityName = HCtoMC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 2
+pnm.nclist.count() = 13533
+presynaptic population = HC
+presynaptic size = 94
+postsynaptic population = MC
+postsynaptic size = 100
+connectivityName = MCtoMC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 1
+pnm.nclist.count() = 16103
+presynaptic population = MC
+presynaptic size = 100
+postsynaptic population = MC
+postsynaptic size = 100
+connectivityName = HCtoHC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 2
+pnm.nclist.count() = 37245
+presynaptic population = HC
+presynaptic size = 94
+postsynaptic population = HC
+postsynaptic size = 94
+connectivityName = MCtoHC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 1
+pnm.nclist.count() = 37272
+presynaptic population = MC
+presynaptic size = 100
+postsynaptic population = HC
+postsynaptic size = 94
+connectivityName = BCtoBC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 3
+pnm.nclist.count() = 38264
+presynaptic population = BC
+presynaptic size = 65
+postsynaptic population = BC
+postsynaptic size = 65
+connectivityName = GCtoBC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 0
+pnm.nclist.count() = 39286
+presynaptic population = GC
+presynaptic size = 10
+postsynaptic population = BC
+postsynaptic size = 65
+connectivityName = MCtoBC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 1
+pnm.nclist.count() = 39415
+presynaptic population = MC
+presynaptic size = 100
+postsynaptic population = BC
+postsynaptic size = 65
+connectivityName = NGFCtoBC
+wdType = 2
+synType.is_number = 0 
+synType.is_list = 1 
+pnm.nclist.count() = 41759
+presynaptic population = NGFC
+presynaptic size = 100
+postsynaptic population = BC
+postsynaptic size = 65
+connectivityName = GCtoAAC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 0
+pnm.nclist.count() = 43215
+presynaptic population = GC
+presynaptic size = 10
+postsynaptic population = AAC
+postsynaptic size = 28
+connectivityName = MCtoAAC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 1
+pnm.nclist.count() = 43260
+presynaptic population = MC
+presynaptic size = 100
+postsynaptic population = AAC
+postsynaptic size = 28
+connectivityName = NGFCtoAAC
+wdType = 2
+synType.is_number = 0 
+synType.is_list = 1 
+pnm.nclist.count() = 43288
+presynaptic population = NGFC
+presynaptic size = 100
+postsynaptic population = AAC
+postsynaptic size = 28
+connectivityName = HCtoNGFC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 2
+pnm.nclist.count() = 43414
+presynaptic population = HC
+presynaptic size = 94
+postsynaptic population = NGFC
+postsynaptic size = 100
+connectivityName = NGFCtoNGFC
+wdType = 2
+synType.is_number = 0 
+synType.is_list = 1 
+pnm.nclist.count() = 43604
+presynaptic population = NGFC
+presynaptic size = 100
+postsynaptic population = NGFC
+postsynaptic size = 100
+connectivityName = MPPtoGC
+wdType = 2
+synType.is_number = 1 
+synType.is_list = 0 
+synType.n = 8
+pnm.nclist.count() = 44020
+presynaptic population = MPP
+presynaptic size = 100
+postsynaptic population = GC
+postsynaptic size = 10
+*** Synaptic connections created in 0 seconds
+gjPath = ./datasets/Control/gjHCtoHC.dat
+gjPath = ./datasets/Control/gjBCtoBC.dat
+gjPath = ./datasets/Control/gjNGFCtoNGFC.dat
+*** Gap junctions created
+host 0: mkstim: maxindex = 1064199 numStimTypes = 6 stimgid = 1064201
+*** Stimulus sources initialized
+dt = 0.025 
+*** Initialization completed
+<string>:1: DeprecationWarning: coreneuron.gpu is deprecated; use gpu.enable (and gpu.backend for native) instead
+ 
+ Duke, Yale, and the BlueBrain Project -- Copyright 1984-2020
+ Version : 9.0.1.post354 a6c6d3d70 (2026-08-04 16:52:40 -0400)
+ 
+ Additional mechanisms from files
+ Aradi_Ca.mod Aradi_CadepK.mod Aradi_KA.mod Aradi_KDRf.mod Aradi_KDRs.mod Aradi_Na.mod CaBK.mod DGC_M.mod DGC_UK.mod DGC_sAHP.mod Gfluct3.mod LcaMig.mod SH_KIn.mod SH_na8st.mod bgka.mod ccanl.mod exp2syn.mod expsyn.mod ggap.mod gskch.mod hh.mod holdingi.mod hyperde3.mod ichan2.mod iconc_Ca.mod kcaPR.mod na3n.mod nca.mod netstim.mod passive.mod pattern.mod spines.mod stim.mod svclmp.mod tca.mod vecevent.mod
+
+ Memory (MBs) :             After mk_mech : Max 196.5781, Min 196.5781, Avg 196.5781 
+ Memory (MBs) :            After MPI_Init : Max 200.2773, Min 200.2773, Avg 200.2773 
+ Memory (MBs) :          Before nrn_setup : Max 200.2852, Min 200.2852, Avg 200.2852 
+ Setup Done   : 0.03 seconds 
+ Model size   : 14.82 MB
+ Memory (MBs) :          After nrn_setup  : Max 218.8047, Min 218.8047, Avg 218.8047 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=10
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=32
+--mindelay=1.0081
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 218.8047, Min 218.8047, Avg 218.8047 
+WARNING: CVode.event(...) for delivery at time step nearest 0.09375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 218.8047, Min 218.8047, Avg 218.8047 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 10.00  ETA: 0h00m01s
+
+Solver Time : 0.972182
+
+
+ Simulation Statistics
+ Number of cells: 397
+ Number of compartments: 12003
+ Number of presyns: 503
+ Number of input presyns: 7254
+ Number of synapses: 56987
+ Number of point processes: 3422
+ Number of transfer sources: 348
+ Number of transfer targets: 348
+ Number of spikes: 400
+ Number of spikes with non negative gid-s: 400
+MULTI_PSOLVE i=0 psolve_wall_mark=1
+*** computation time at t=0 ms was 1.19477 s
+*** remaining computation time is 1798.81 s and remaining simulation time is 10 ms
+*** estimated computation time to completion is 131.948 s
+ Memory (MBs) :             After mk_mech : Max 293.7344, Min 293.7344, Avg 293.7344 
+ Memory (MBs) :            After MPI_Init : Max 293.7344, Min 293.7344, Avg 293.7344 
+ Memory (MBs) :          Before nrn_setup : Max 293.7344, Min 293.7344, Avg 293.7344 
+ Setup Done   : 0.03 seconds 
+ Model size   : 14.82 MB
+ Memory (MBs) :          After nrn_setup  : Max 311.7734, Min 311.7734, Avg 311.7734 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=10
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=32
+--mindelay=1.0081
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 311.7734, Min 311.7734, Avg 311.7734 
+WARNING: CVode.event(...) for delivery at time step nearest 0.09375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 311.7734, Min 311.7734, Avg 311.7734 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 10.00  ETA: 0h00m01s
+
+Solver Time : 0.968937
+
+
+ Simulation Statistics
+ Number of cells: 397
+ Number of compartments: 12003
+ Number of presyns: 503
+ Number of input presyns: 7254
+ Number of synapses: 56987
+ Number of point processes: 3422
+ Number of transfer sources: 348
+ Number of transfer targets: 348
+ Number of spikes: 400
+ Number of spikes with non negative gid-s: 400
+MULTI_PSOLVE i=1 psolve_wall_mark=1
+*** computation time at t=0 ms was 1.0619 s
+*** remaining computation time is 1797.74 s and remaining simulation time is 10 ms
+*** estimated computation time to completion is 131.283 s
+ Memory (MBs) :             After mk_mech : Max 311.8242, Min 311.8242, Avg 311.8242 
+ Memory (MBs) :            After MPI_Init : Max 311.8242, Min 311.8242, Avg 311.8242 
+ Memory (MBs) :          Before nrn_setup : Max 311.8242, Min 311.8242, Avg 311.8242 
+ Setup Done   : 0.03 seconds 
+ Model size   : 14.82 MB
+ Memory (MBs) :          After nrn_setup  : Max 312.7461, Min 312.7461, Avg 312.7461 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=10
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=false
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=32
+--mindelay=1.0081
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 312.7461, Min 312.7461, Avg 312.7461 
+WARNING: CVode.event(...) for delivery at time step nearest 0.09375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 312.7461, Min 312.7461, Avg 312.7461 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=========================================================| t: 10.00  ETA: 0h00m01s
+
+Solver Time : 0.973698
+
+
+ Simulation Statistics
+ Number of cells: 397
+ Number of compartments: 12003
+ Number of presyns: 503
+ Number of input presyns: 7254
+ Number of synapses: 56987
+ Number of point processes: 3422
+ Number of transfer sources: 348
+ Number of transfer targets: 348
+ Number of spikes: 400
+ Number of spikes with non negative gid-s: 400
+MULTI_PSOLVE i=2 psolve_wall_mark=1
+MULTI_PSOLVE_DONE n=3 engine=cn_cpu nthread=1
+	1 
+MULTI_PSOLVE_EXIT_OK

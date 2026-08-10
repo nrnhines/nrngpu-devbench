@@ -1,0 +1,33 @@
+row,engine,t0,t1,t2,cell,log
+Ring16 nt1,cpu,0.48277,0.482559,0.482847,0.4828 / 0.4826–0.4828,ring_n16_nt1_cpu.log
+Ring16 nt1,gpu,1.23142,0.945686,0.751787,1.231 / 0.7518–0.9457,ring_n16_nt1_gpu.log
+Ring16 nt1,cn_cpu,0.409505,0.42537,0.427959,0.4095 / 0.4254–0.428,ring_n16_nt1_cn_cpu.log
+Ring16 nt1,cn_gpu,1.50105,1.34356,1.32026,1.501 / 1.32–1.344,ring_n16_nt1_cn_gpu.log
+Ring16 nt4,cpu,0.133468,0.128869,0.129352,0.1335 / 0.1289–0.1294,ring_n16_nt4_cpu.log
+Ring16 nt4,gpu,3.48886,3.14669,3.11386,3.489 / 3.114–3.147,ring_n16_nt4_gpu.log
+Ring16 nt4,cn_cpu,0.536503,0.555921,0.5543,0.5365 / 0.5543–0.5559,ring_n16_nt4_cn_cpu.log
+Ring16 nt4,cn_gpu,4.70639,4.57675,4.55003,4.706 / 4.55–4.577,ring_n16_nt4_cn_gpu.log
+Ring160 nt1,cpu,3.65262,3.67288,3.66696,3.653 / 3.667–3.673,ring_n160_nt1_cpu.log
+Ring160 nt1,gpu,2.26366,1.85584,1.85241,2.264 / 1.852–1.856,ring_n160_nt1_gpu.log
+Ring160 nt1,cn_cpu,3.91469,3.94834,3.91739,3.915 / 3.917–3.948,ring_n160_nt1_cn_cpu.log
+Ring160 nt1,cn_gpu,2.63406,2.53465,2.53809,2.634 / 2.535–2.538,ring_n160_nt1_cn_gpu.log
+Ring160 nt4,cpu,1.19893,1.16215,0.968877,1.199 / 0.9689–1.162,ring_n160_nt4_cpu.log
+Ring160 nt4,gpu,4.54175,4.02047,4.04789,4.542 / 4.02–4.048,ring_n160_nt4_gpu.log
+Ring160 nt4,cn_cpu,3.83414,3.86029,4.15483,3.834 / 3.86–4.155,ring_n160_nt4_cn_cpu.log
+Ring160 nt4,cn_gpu,6.27407,6.18399,6.18591,6.274 / 6.184–6.186,ring_n160_nt4_cn_gpu.log
+Dentate nt1,cpu,2.2539,2.28236,2.24191,2.254 / 2.242–2.282,dent_nt1_cpu.log
+Dentate nt1,gpu,,,,ERR,dent_nt1_gpu.log
+Dentate nt1,cn_cpu,0.972182,0.968937,0.973698,0.9722 / 0.9689–0.9737,dent_nt1_cn_cpu.log
+Dentate nt1,cn_gpu,0.83,0.799738,0.807929,0.83 / 0.7997–0.8079,dent_nt1_cn_gpu.log
+Dentate nt4,cpu,1.01588,0.908009,0.86931,1.016 / 0.8693–0.908,dent_nt4_cpu.log
+Dentate nt4,gpu,,,,ERR,dent_nt4_gpu.log
+Dentate nt4,cn_cpu,1.04082,1.02816,1.02953,1.041 / 1.028–1.03,dent_nt4_cn_cpu.log
+Dentate nt4,cn_gpu,1.03217,0.945527,0.936805,1.032 / 0.9368–0.9455,dent_nt4_cn_gpu.log
+Traub no-gap,cpu,35.0026,34.2342,34.1505,35 / 34.15–34.23,traub_nogap_cpu.log
+Traub no-gap,gpu,17.8971,15.854,15.8632,17.9 / 15.85–15.86,traub_nogap_gpu.log
+Traub no-gap,cn_cpu,28.3161,28.0649,28.1381,28.32 / 28.06–28.14,traub_nogap_cn_cpu.log
+Traub no-gap,cn_gpu,8.5777,8.44817,8.60211,8.578 / 8.448–8.602,traub_nogap_cn_gpu.log
+Traub gap,cpu,36.7141,36.3589,36.4733,36.71 / 36.36–36.47,traub_gap_cpu.log
+Traub gap,gpu,19.672,19.1058,18.788,19.67 / 18.79–19.11,traub_gap_gpu.log
+Traub gap,cn_cpu,27.8178,27.962,28.0099,27.82 / 27.96–28.01,traub_gap_cn_cpu.log
+Traub gap,cn_gpu,9.5994,9.52738,9.55063,9.599 / 9.527–9.551,traub_gap_cn_gpu.log

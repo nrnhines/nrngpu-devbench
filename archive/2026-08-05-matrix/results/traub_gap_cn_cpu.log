@@ -1,0 +1,317 @@
+NEURON -- VERSION 9.0.1-354-ga6c6d3d70 local/gpu-native (a6c6d3d70+) 2026-08-04
+Duke, Yale, and the BlueBrain Project -- Copyright 1984-2022
+See http://neuron.yale.edu/neuron/credits
+
+Additional mechanisms from files
+ "./alphasyndiffeq.mod" "./alphasynkin.mod" "./alphasynkint.mod" "./ampa.mod" "./ar.mod" "./cad.mod" "./cal.mod" "./cat_a.mod" "./cat.mod" "./gabaa.mod" "./iclamp_const.mod" "./k2.mod" "./kahp_deeppyr.mod" "./kahp.mod" "./kahp_slower.mod" "./ka_ib.mod" "./ka.mod" "./kc_fast.mod" "./kc.mod" "./kdr_fs.mod" "./kdr.mod" "./km.mod" "./naf2.mod" "./naf.mod" "./naf_tcr.mod" "./napf.mod" "./napf_spinstell.mod" "./napf_tcr.mod" "./nap.mod" "./par_ggap.mod" "./pulsesyn.mod" "./rampsyn.mod" "./ri.mod" "./traub_nmda.mod"
+load_balance_phase  0 
+one_tenth_ncell  1 
+use_gap  1 
+use_ectopic  1 
+use_inject  1 
+awake  1 
+default_delay  0.5 
+ranseedbase  1 
+use_traubexact  0 
+wholecell_prefix  cxwhole
+multisplit_prefix  cx
+multisplit_nhost  256 
+msoptfactor  0.8 
+nthread  1 
+savestatetest  0 
+coreneuron  1 
+coreneuron_gpu  0 
+enable_gpu  0 
+gpu_backend  native
+gpu_download_flush  1 
+benchmark_quiet  1 
+prcellstate_gid  -1 
+prcellstate_checkpoint  -1 
+spike_compress  5 
+cacheeffic  1 
+multisend  0 
+selfevents  0 
+fakerank  -1 
+fakenhost  -1 
+n_multi_psolve  3 
+made it to end of network_specification_interface.hoc
+Initializing Network
+creating 356  cells:
+
+creating 100 suppyrRS cells
+creating 5 suppyrFRB cells
+creating 9 supbask cells
+creating 9 supaxax cells
+creating 9 supLTS cells
+creating 24 spinstell cells
+creating 80 tuftIB cells
+creating 20 tuftRS cells
+creating 50 nontuftRS cells
+creating 10 deepbask cells
+creating 10 deepaxax cells
+creating 10 deepLTS cells
+creating 10 TCR cells
+creating 10 nRT cells
+Done creating cells
+Constructing suppyrRS_to_suppyrRS maps
+Constructing suppyrRS_to_suppyrFRB maps.. and so forth
+constructing suppyrRS_to_nontuftRS
+constructing suppyrFRB_to_suppyrRS
+ finished construction of cell connection tables
+Starting construction of compartment map connection tables
+ calling  com_suppyrRS_to_suppyrRS = synaptic_compmap_construct
+...
+com_TCR_to_tuftRS
+Construct gap-junction tables
+Adding constant random current injections to the somas
+  of some cell types.
+Completed adding constant random current injections.
+Total number: syn_num = 5000 suppyrRS_to_suppyrRS synapses
+creating 100 NetStim's for suppyrRS cells
+creating 5 NetStim's for suppyrFRB cells
+creating 80 NetStim's for tuftIB cells
+creating 20 NetStim's for tuftRS cells
+creating 50 NetStim's for nontuftRS cells
+creating 10 NetStim's for TCR cells
+at end
+SetupTime: 1.8725462 
+mytstop  100 
+<string>:1: DeprecationWarning: coreneuron.gpu is deprecated; use gpu.enable (and gpu.backend for native) instead
+	2 
+ 
+ Duke, Yale, and the BlueBrain Project -- Copyright 1984-2020
+ Version : 9.0.1.post329 5ce6fbd80 (2026-08-03 10:15:37 -0400)
+ 
+ Additional mechanisms from files
+ alphasyndiffeq.mod alphasynkin.mod alphasynkint.mod ampa.mod ar.mod cad.mod cal.mod cat.mod cat_a.mod exp2syn.mod expsyn.mod gabaa.mod hh.mod iclamp_const.mod k2.mod ka.mod ka_ib.mod kahp.mod kahp_deeppyr.mod kahp_slower.mod kc.mod kc_fast.mod kdr.mod kdr_fs.mod km.mod naf.mod naf2.mod naf_tcr.mod nap.mod napf.mod napf_spinstell.mod napf_tcr.mod netstim.mod par_ggap.mod passive.mod pattern.mod pulsesyn.mod rampsyn.mod ri.mod stim.mod svclmp.mod traub_nmda.mod
+
+t=0 
+ Memory (MBs) :             After mk_mech : Max 534.5117, Min 534.5117, Avg 534.5117 
+ Memory (MBs) :            After MPI_Init : Max 534.5117, Min 534.5117, Avg 534.5117 
+ Memory (MBs) :          Before nrn_setup : Max 534.5234, Min 534.5234, Avg 534.5234 
+ Setup Done   : 0.13 seconds 
+ Model size   : 62.00 MB
+ Memory (MBs) :          After nrn_setup  : Max 604.7969, Min 604.7969, Avg 604.7969 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=true
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 604.7969, Min 604.7969, Avg 604.7969 
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 604.8594, Min 604.8594, Avg 604.8594 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |=======                                                  | t: 13.75  ETA: 0h00m31spsolve |=================                                        | t: 31.50  ETA: 0h00m21spsolve |============================                             | t: 49.75  ETA: 0h00m15spsolve |=======================================                  | t: 68.50  ETA: 0h00m09spsolve |=================================================        | t: 86.63  ETA: 0h00m03spsolve |======================================================== | t: 99.88  ETA: 0h00m00s
+
+Solver Time : 27.8178
+
+
+ Simulation Statistics
+ Number of cells: 356
+ Number of compartments: 46574
+ Number of presyns: 621
+ Number of input presyns: 0
+ Number of synapses: 109982
+ Number of point processes: 111189
+ Number of transfer sources: 634
+ Number of transfer targets: 634
+ Number of spikes: 7867
+ Number of spikes with non negative gid-s: 7867
+MULTI_PSOLVE i=0 runtime=29.0914
+BENCHMARK runtime=29.0914 setuptime=1.87255 ncell=356 enable_gpu=0 nhost=1 rep=0
+t=0 
+ Memory (MBs) :             After mk_mech : Max 564.9180, Min 564.9180, Avg 564.9180 
+ Memory (MBs) :            After MPI_Init : Max 564.9180, Min 564.9180, Avg 564.9180 
+ Memory (MBs) :          Before nrn_setup : Max 564.9180, Min 564.9180, Avg 564.9180 
+ Setup Done   : 0.09 seconds 
+ Model size   : 62.00 MB
+ Memory (MBs) :          After nrn_setup  : Max 617.9727, Min 617.9727, Avg 617.9727 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=true
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 617.9727, Min 617.9727, Avg 617.9727 
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 617.9727, Min 617.9727, Avg 617.9727 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |========                                                 | t: 14.87  ETA: 0h00m28spsolve |==================                                       | t: 32.50  ETA: 0h00m20spsolve |============================                             | t: 50.50  ETA: 0h00m14spsolve |=======================================                  | t: 69.00  ETA: 0h00m08spsolve |=================================================        | t: 87.00  ETA: 0h00m03spsolve |======================================================== | t: 99.88  ETA: 0h00m00s
+
+Solver Time : 27.962
+
+
+ Simulation Statistics
+ Number of cells: 356
+ Number of compartments: 46574
+ Number of presyns: 621
+ Number of input presyns: 0
+ Number of synapses: 109982
+ Number of point processes: 111189
+ Number of transfer sources: 634
+ Number of transfer targets: 634
+ Number of spikes: 7867
+ Number of spikes with non negative gid-s: 7867
+MULTI_PSOLVE i=1 runtime=28.981
+BENCHMARK runtime=28.981 setuptime=1.87255 ncell=356 enable_gpu=0 nhost=1 rep=1
+t=0 
+ Memory (MBs) :             After mk_mech : Max 576.0000, Min 576.0000, Avg 576.0000 
+ Memory (MBs) :            After MPI_Init : Max 576.0000, Min 576.0000, Avg 576.0000 
+ Memory (MBs) :          Before nrn_setup : Max 576.0000, Min 576.0000, Avg 576.0000 
+ Setup Done   : 0.09 seconds 
+ Model size   : 62.00 MB
+ Memory (MBs) :          After nrn_setup  : Max 622.0352, Min 622.0352, Avg 622.0352 
+GENERAL PARAMETERS
+--mpi=false
+--mpi-lib=
+--gpu=false
+--dt=0.025
+--tstop=100
+
+GPU
+--nwarp=65536
+--cell-permute=0
+--cuda-interface=false
+
+INPUT PARAMETERS
+--voltage=1000
+--seed=-1
+--datpath=.
+--filesdat=./files.dat
+--pattern=
+--report-conf=
+--restore=     
+
+PARALLEL COMPUTATION PARAMETERS
+--threading=false
+--skip_mpi_finalize=true
+
+SPIKE EXCHANGE
+--ms_phases=2
+--ms_subintervals=2
+--multisend=false
+--spk_compress=0
+--binqueue=true
+
+CONFIGURATION
+--spikebuf=100000
+--prcellgid=-1
+--forwardskip=0
+--celsius=6.3
+--mindelay=10
+--report-buffer-size=4
+
+OUTPUT PARAMETERS
+--dt_io=0.1
+--outpath=.
+--checkpoint=
+
+ Start time (t) = 0
+
+ Memory (MBs) :  After mk_spikevec_buffer : Max 622.0352, Min 622.0352, Avg 622.0352 
+WARNING: CVode.event(...) for delivery at time step nearest 0.99375 discarded. CoreNEURON cannot presently handle interpreter events (rank 0, thread 0).
+ Memory (MBs) :     After nrn_finitialize : Max 622.0352, Min 622.0352, Avg 622.0352 
+
+psolve |                                                         | t: 0.00   ETA: 0h00m00spsolve |========                                                 | t: 14.87  ETA: 0h00m28spsolve |==================                                       | t: 32.50  ETA: 0h00m20spsolve |============================                             | t: 50.63  ETA: 0h00m14spsolve |=======================================                  | t: 69.00  ETA: 0h00m08spsolve |=================================================        | t: 87.00  ETA: 0h00m03spsolve |======================================================== | t: 99.88  ETA: 0h00m00s
+
+Solver Time : 28.0099
+
+
+ Simulation Statistics
+ Number of cells: 356
+ Number of compartments: 46574
+ Number of presyns: 621
+ Number of input presyns: 0
+ Number of synapses: 109982
+ Number of point processes: 111189
+ Number of transfer sources: 634
+ Number of transfer targets: 634
+ Number of spikes: 7867
+ Number of spikes with non negative gid-s: 7867
+MULTI_PSOLVE i=2 runtime=29.0509
+BENCHMARK runtime=29.0509 setuptime=1.87255 ncell=356 enable_gpu=0 nhost=1 rep=2
+tstop = 100 
+MULTI_PSOLVE_DONE n=3
