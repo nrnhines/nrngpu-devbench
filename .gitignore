@@ -1,0 +1,16 @@
+# Bulky run output (keep thin git history)
+*.log
+/tmp/
+results/
+campaigns/**/raw/
+campaigns/**/*.csv
+!campaigns/**/SUMMARY.md
+!campaigns/**/.gitkeep
+
+# Editor / OS
+*~
+.DS_Store
+*.swp
+.pytest_cache/
+__pycache__/
+*.pyc
