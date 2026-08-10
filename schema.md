@@ -76,6 +76,33 @@ config,backend,identity,wall_cold_s,wall_warm_s,wall_method,hypothesis_id,status
 
 ---
 
+## Preferred SUMMARY matrix (human table)
+
+Column order (archive-like, **GPU (native)** last):
+
+```text
+Config | CPU | CN | CN GPU | GPU (native)
+```
+
+Each body cell:
+
+1. Wall (or `—` if not run) on the first line(s).  
+2. Identity mark **bottom-right** (second line, right-aligned in HTML for GitHub):
+
+| Mark | Meaning |
+|------|---------|
+| ✅ | Spike raster / multiset identity **pass** |
+| ❌ | Identity **fail** |
+| ➖ | Timing/run only — identity not checked |
+
+Example cell (GFM + HTML, renders on GitHub):
+
+```html
+<div align="right">2.245 / 1.885–1.896<br>✅ 400</div>
+```
+
+See `campaigns/2026-08-10-tip-l0-bars/SUMMARY.md`.
+
 ## Non-goals
 
 - Do not replace L0 product ctests.  
