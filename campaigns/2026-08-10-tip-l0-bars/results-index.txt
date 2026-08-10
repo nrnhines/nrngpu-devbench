@@ -1,0 +1,24 @@
+=== dentate_ctest 2026-08-10T10:45:01-04:00 ===
+exit=0
+STATUS dentate_ctest PASS
+=== dentate_compare 2026-08-10T10:45:06-04:00 ===
+exit=0
+STATUS dentate_compare PASS
+=== ring_mpi_ctest 2026-08-10T10:45:06-04:00 ===
+exit=0
+STATUS ring_mpi_ctest PASS
+RING_WD=/home/hines/neuron/nrngpu/build-gpu/test/external_ringtest/neuron_gpu_native_mpi
+=== ring_spk_gpu 2026-08-10T10:45:08-04:00 ===
+exit=0
+STATUS ring_spk_gpu PASS
+ring_spk_gpu_count=688
+=== ring_prcell_32_100 2026-08-10T10:45:09-04:00 ===
+exit=1
+STATUS ring_prcell_32_100 FAIL
+=== traub_nogap 2026-08-10T10:45:11-04:00 ===
+exit=0
+STATUS traub_nogap PASS
+=== traub_gap 2026-08-10T10:46:13-04:00 ===
+exit=0
+STATUS traub_gap PASS
+=== DONE ===
