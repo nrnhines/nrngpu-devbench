@@ -83,6 +83,10 @@ if (enable_gpu) {
 }
 
 for i = 0, n_multi_psolve - 1 {
+    if (i == n_multi_psolve - 1) {
+        pnm.spikevec.resize(0)
+        pnm.idvec.resize(0)
+    }
     prun()
     if (pc.id == 0) {
         printf("MULTI_PSOLVE i=%d runtime=%g\n", i, runtime)
@@ -91,12 +95,14 @@ for i = 0, n_multi_psolve - 1 {
     }
 }
 
+// Last-psolve raster (out<nhost>.dat in cwd; run_matrix.sh moves it to NRN_SPIKE_OUT_DIR).
+spike2file()
 if (pc.id == 0) {
     print "tstop = ", tstop
     printf("MULTI_PSOLVE_DONE n=%d\n", n_multi_psolve)
+    printf("IDENTITY_N=%d file=out%d.dat\n", pnm.spikevec.size, pnm.nhost)
 }
 
-// Skip spike2file / heavy stats for bench (benchmark_quiet path)
 getstat()
 {pc.done()}
 if (!serial) { quit() }

@@ -15,6 +15,7 @@ Add a row when you form a claim; update state when measured. Link campaigns via 
 | H-matrix-2026-08-05 | 2026-08-05 matrix is **timing-only** (no spike ✓/✗); dentate native **ERR** on that tip | archived | `archive/2026-08-05-matrix/` @ tip `7ef35f6e2` (**2.4.1** frozen) | Source also under `notes/perf_matrix/`; do not overwrite |
 | H-dentate-refill-2026-08 | Dentate product identity green on tip after SEGV era; 1-rank GPU wall probes complete | closed | campaign `2026-08-06-tip-dentate` @ `0bdfca4b1` — multiset:400 pass; psolve ~1.13 s (4-rank MPS) | Wall probes identity n/a by design |
 | H-l0-smoke-2026-08-10 | Full L0 product bars green on tip (ring 688, dentate 400, Traub 4474/7873) | closed | campaign `2026-08-10-tip-l0-bars` @ `0bdfca4b1` | prcellstate rdcellstate exit 1 at float noise only (≤1e-13) |
+| H-dentate-1rank-cngpu | 1-rank Dentate nt1 CN GPU warm is ~3× native GPU (~0.53 s vs ~1.89 s on 2026-08-10 probes) | open | campaign `2026-09-10-tip-psolve-matrix` @ `76ba78245` (not run yet) | Do not mix with 4-rank MPS product bar; identity `cpu_same_cell` |
 
 ---
 

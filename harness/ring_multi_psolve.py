@@ -39,13 +39,21 @@ old = """if __name__ == '__main__':
 
 new = f"""if __name__ == '__main__':
 
+    import os
+    import commonutils as _cu
+
     model = create_rings()
 
-    ## Multi-psolve (cold = i0, warm = i1..i2) ##
+    ## Multi-psolve (cold = i0, warm = i1..i2); last-psolve raster only ##
     arm_prcellstate_checkpoint()
+    _spike_dir = os.environ.get("NRN_SPIKE_OUT_DIR", ".")
+    os.makedirs(_spike_dir, exist_ok=True)
     for _i in range({nrep}):
         if _i > 0:
             h.stdinit()
+        if _i == {nrep} - 1:
+            _cu.tvec.resize(0)
+            _cu.idvec.resize(0)
         runtime, load_balance, avg_comp_time, spk_time, gap_time = prun(tstop)
         pc.barrier()
         if settings.rank == 0:
@@ -54,8 +62,14 @@ new = f"""if __name__ == '__main__':
                 % (_i, runtime, load_balance * 100, avg_comp_time),
                 flush=True,
             )
+    spikeout(_spike_dir)
     if settings.rank == 0:
         print("MULTI_PSOLVE_DONE n={nrep}", flush=True)
+        print(
+            "IDENTITY_N=%d dir=%s"
+            % (int(pc.allreduce(_cu.tvec.size(), 1)), _spike_dir),
+            flush=True,
+        )
 
     h.quit()
 """

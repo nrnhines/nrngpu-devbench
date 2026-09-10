@@ -67,13 +67,21 @@ def main() -> None:
         raise SystemExit("top-level prun() not found in main.hoc")
 
     head, _, _ = main_src.rpartition("\nprun()\n")
-    # Drop spike I/O after prun for speed/stability
+    spike_dir = os.environ.get("NRN_SPIKE_OUT_DIR", os.path.join(cwd, "_perf_spikes"))
+    os.makedirs(spike_dir, exist_ok=True)
+    spike_dir_hoc = spike_dir.replace("\\", "\\\\").replace('"', '\\"')
+    # Last-psolve raster only (clear record vectors before the last iteration).
     multi_tail = f"""
 // multi-psolve: first call uses state after the stdinit already done above.
+strdef spikeout_fname
 proc multi_prun() {{ local i, tsav
   for i = 0, {nrep - 1} {{
     if (i > 0) {{
       stdinit()
+    }}
+    if (i == {nrep - 1}) {{
+      pnm.spikevec.resize(0)
+      pnm.idvec.resize(0)
     }}
     if (use_coreneuron) {{
       nrnpython("from neuron import coreneuron")
@@ -95,8 +103,11 @@ proc multi_prun() {{ local i, tsav
       }}
     }}
   }}
+  sprint(spikeout_fname, "{spike_dir_hoc}/spikeout_%d.dat", pnm.myid)
+  spikeout(spikeout_fname, pnm.spikevec, pnm.idvec)
   if (pnm.pc.id == 0) {{
     printf("MULTI_PSOLVE_DONE n=%d engine=%s nthread=%d\\n", {nrep}, "{engine}", {nthread})
+    printf("IDENTITY_N=%d dir={spike_dir_hoc}\\n", pnm.spikevec.size)
   }}
 }}
 multi_prun()

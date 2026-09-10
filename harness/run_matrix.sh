@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Run 8×4 psolve matrix (3 multi-solves per cell). Logs under /tmp/perf-matrix.
+# Last-psolve ASCII rasters: $OUT/spikes/<tag>/ (identity vs CPU of the same config).
 set -euo pipefail
 
 source ~/neuron/bin/nrnenv nrngpu build-gpu
@@ -37,6 +38,8 @@ run_one() {
   local tag=$1
   shift
   local log="$OUT/${tag}.log"
+  mkdir -p "$OUT/spikes/$tag"
+  export NRN_SPIKE_OUT_DIR="$OUT/spikes/$tag"
   echo "=== RUN $tag $(date -Iseconds) ===" | tee -a "$OUT/progress.txt"
   set +e
   # shellcheck disable=SC2068
@@ -118,6 +121,14 @@ traub_run() {
     *) return 1 ;;
   esac
   run_one "$tag" bash -c "cd \"$TRAUB_MODEL\" && \"$TRAUB_SPECIAL\" ${args[*]} \"$TRAUB_HOC\""
+  # spike2file writes out<nhost>.dat in the model cwd; move to the per-tag spike dir.
+  if [[ -n "${NRN_SPIKE_OUT_DIR:-}" ]]; then
+    for f in "$TRAUB_MODEL"/out*.dat; do
+      if [[ -f "$f" ]]; then
+        mv -f "$f" "$NRN_SPIKE_OUT_DIR/$(basename "$f")"
+      fi
+    done
+  fi
 }
 
 for gap in 0 1; do

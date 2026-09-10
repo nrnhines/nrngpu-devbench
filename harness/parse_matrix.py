@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Parse /tmp/perf-matrix/*.log into cold | warm_min-warm_max table + CSV."""
+"""Parse psolve-matrix logs + last-psolve rasters into wall table + identity CSV."""
 from __future__ import annotations
 
 import csv
 import re
 import sys
 from pathlib import Path
+
+from identity import identity_vs_cpu, load_spike_dir
 
 SOLVER_RE = re.compile(r"Solver Time\s*:\s*([0-9.eE+-]+)")
 MULTI_RE = re.compile(r"MULTI_PSOLVE i=(\d+)\s+runtime=([0-9.eE+-]+)")
@@ -63,7 +65,8 @@ ROWS = [
     ("traub_nogap", "Traub no-gap"),
     ("traub_gap", "Traub gap"),
 ]
-COLS = [("cpu", "CPU"), ("gpu", "GPU"), ("cn_cpu", "CN CPU"), ("cn_gpu", "CN GPU")]
+# Display order matches campaign SUMMARY (GPU native last).
+COLS = [("cpu", "CPU"), ("cn_cpu", "CN"), ("cn_gpu", "CN GPU"), ("gpu", "GPU (native)")]
 
 
 def main() -> None:
@@ -74,8 +77,16 @@ def main() -> None:
 
     for rkey, rlabel in ROWS:
         table[rkey] = {}
+        cpu_spikes = load_spike_dir(out / "spikes" / f"{rkey}_cpu")
         for ckey, clabel in COLS:
             log = out / f"{rkey}_{ckey}.log"
+            spike_dir = out / "spikes" / f"{rkey}_{ckey}"
+            other_spikes = (
+                cpu_spikes if ckey == "cpu" else load_spike_dir(spike_dir)
+            )
+            ident, nspk = identity_vs_cpu(cpu_spikes, other_spikes)
+            if ckey == "cpu" and cpu_spikes is not None:
+                ident, nspk = "pass", len(cpu_spikes)
             if not log.exists():
                 table[rkey][ckey] = "MISS"
                 rows_out.append(
@@ -86,6 +97,8 @@ def main() -> None:
                         "t1": "",
                         "t2": "",
                         "cell": "MISS",
+                        "identity": ident if other_spikes is not None else "miss",
+                        "n_spikes": nspk if nspk is not None else "",
                         "log": str(log),
                     }
                 )
@@ -101,31 +114,61 @@ def main() -> None:
                 "t1": vals[1] if vals and len(vals) > 1 else "",
                 "t2": vals[2] if vals and len(vals) > 2 else "",
                 "cell": cell,
+                "identity": ident,
+                "n_spikes": nspk if nspk is not None else "",
                 "log": log.name,
             }
             rows_out.append(rec)
 
     csv_path = out / "results.csv"
+    fields = ["row", "engine", "t0", "t1", "t2", "cell", "identity", "n_spikes", "log"]
     with csv_path.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["row", "engine", "t0", "t1", "t2", "cell", "log"])
+        w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(rows_out)
 
+    ident_by = {(r["row"], r["engine"]): r for r in rows_out}
+
+    def ident_mark(rlabel: str, ckey: str) -> str:
+        rec = ident_by.get((rlabel, ckey), {})
+        ident = rec.get("identity", "")
+        nspk = rec.get("n_spikes", "")
+        if ident == "pass":
+            return f"✅ {nspk}" if nspk != "" else "✅"
+        if ident == "fail":
+            return f"❌ {nspk}" if nspk != "" else "❌"
+        if ident == "n/a":
+            return f"➖ {nspk}" if nspk != "" else "➖"
+        if ident == "miss":
+            return "—"
+        return ident or "—"
+
     lines = [
-        f"# Performance matrix",
+        "# Performance matrix",
         "",
         stamp.strip(),
         "",
         "Each cell: **cold / warm_min–warm_max** seconds (3 psolves in one process).",
         "NEURON columns: psolve wall. CN columns: CoreNEURON `Solver Time`.",
+        "Identity: last-psolve raster vs **CPU of the same config** (exact sorted t,gid).",
         "",
-        "| Config | CPU | GPU | CN CPU | CN GPU |",
-        "|--------|-----|-----|--------|--------|",
+        "| Config | CPU | CN | CN GPU | GPU (native) |",
+        "|--------|-----|----|--------|--------------|",
     ]
     for rkey, rlabel in ROWS:
         c = table[rkey]
         lines.append(
-            f"| {rlabel} | {c.get('cpu','')} | {c.get('gpu','')} | {c.get('cn_cpu','')} | {c.get('cn_gpu','')} |"
+            "| {lab} | {cpu} {icpu} | {cn} {icn} | {cng} {icng} | {gpu} {igpu} |".format(
+                lab=rlabel,
+                cpu=c.get("cpu", ""),
+                cn=c.get("cn_cpu", ""),
+                cng=c.get("cn_gpu", ""),
+                gpu=c.get("gpu", ""),
+                icpu=ident_mark(rlabel, "cpu"),
+                icn=ident_mark(rlabel, "cn_cpu"),
+                icng=ident_mark(rlabel, "cn_gpu"),
+                igpu=ident_mark(rlabel, "gpu"),
+            )
         )
     lines.append("")
     lines.append(f"Raw CSV: `{csv_path}`")
