@@ -3,8 +3,8 @@
 | Field | Value |
 |-------|--------|
 | `campaign_id` | `2026-09-10-tip-psolve-matrix` |
-| `date` | `2026-09-10` (planned; fill ISO time when run) |
-| `status` | **harness ready — not run** |
+| `date` | `2026-09-10T18:15:59-04:00` (matrix start; done 18:28:07) |
+| `status` | **closed** — 32/32 launches OK |
 | `machine` | hines-ThinkStation-P5 / NVIDIA T1000 8GB |
 | `product_tree` | `~/neuron/nrngpu` |
 | `branch` | `local/gpu-native` |

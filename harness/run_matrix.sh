@@ -123,11 +123,16 @@ traub_run() {
   run_one "$tag" bash -c "cd \"$TRAUB_MODEL\" && \"$TRAUB_SPECIAL\" ${args[*]} \"$TRAUB_HOC\""
   # spike2file writes out<nhost>.dat in the model cwd; move to the per-tag spike dir.
   if [[ -n "${NRN_SPIKE_OUT_DIR:-}" ]]; then
-    for f in "$TRAUB_MODEL"/out*.dat; do
-      if [[ -f "$f" ]]; then
-        mv -f "$f" "$NRN_SPIKE_OUT_DIR/$(basename "$f")"
+    # spike2file writes out<nhost>.dat only (not out1_enable_gpu=*.dat leftovers).
+    shopt -s nullglob
+    for f in "$TRAUB_MODEL"/out[0-9]*.dat; do
+      base=$(basename "$f")
+      stem=${base%.dat}
+      if [[ "$stem" =~ ^out[0-9]+$ && -f "$f" ]]; then
+        mv -f "$f" "$NRN_SPIKE_OUT_DIR/$base"
       fi
     done
+    shopt -u nullglob
   fi
 }
 

@@ -3,16 +3,23 @@ from __future__ import annotations
 
 from pathlib import Path
 
-_GLOBS = ("*.std", "*.dat", "spk*", "out*", "*spike*")
+def _is_raster(path: Path) -> bool:
+    name = path.name
+    if name.endswith(".std") and name.startswith("spk"):
+        return True
+    if name.startswith("spikeout_") and name.endswith(".dat"):
+        return True
+    # Traub spike2file: out<nhost>.dat — not out1_enable_gpu=1.dat leftovers.
+    if name.startswith("out") and name.endswith(".dat"):
+        stem = name[3:-4]
+        return stem.isdigit()
+    return False
 
 
 def load_spike_dir(directory: Path) -> list[tuple[float, int]] | None:
     if not directory.is_dir():
         return None
-    files: list[Path] = []
-    for pat in _GLOBS:
-        files.extend(directory.glob(pat))
-    files = sorted({p for p in files if p.is_file() and p.stat().st_size > 0})
+    files = sorted({p for p in directory.iterdir() if p.is_file() and p.stat().st_size > 0 and _is_raster(p)})
     if not files:
         return None
     spikes: list[tuple[float, int]] = []
