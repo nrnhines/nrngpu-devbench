@@ -28,6 +28,7 @@ OUT="${TRAUB_PRCS_OUT:-/tmp/traub-prcs}"
 GAP=1
 GID=47
 TSTOP=100
+STEPS_PER_MS=40
 ENGINES="cpu,cn_cpu,cn_gpu"
 DUMP_T0=1
 CHECKPOINT_T=""
@@ -43,6 +44,7 @@ while [[ $# -gt 0 ]]; do
     --no-gap) GAP=0; shift ;;
     --gid) GID="$2"; shift 2 ;;
     --tstop) TSTOP="$2"; shift 2 ;;
+    --steps-per-ms) STEPS_PER_MS="$2"; shift 2 ;;
     --engines) ENGINES="$2"; shift 2 ;;
     --no-t0) DUMP_T0=0; shift ;;
     --checkpoint-t) CHECKPOINT_T="$2"; shift 2 ;;
@@ -62,7 +64,7 @@ if [[ ! -d "$MODEL" || ! -f "$HOC" ]]; then
 fi
 
 mkdir -p "$OUT"
-echo "out=$OUT gap=$GAP gid=$GID tstop=$TSTOP engines=$ENGINES" | tee "$OUT/stamp.txt"
+echo "out=$OUT gap=$GAP gid=$GID tstop=$TSTOP steps_per_ms=$STEPS_PER_MS engines=$ENGINES" | tee "$OUT/stamp.txt"
 git -C "$HOME/neuron/nrngpu" rev-parse --short HEAD >>"$OUT/stamp.txt" || true
 
 run_eng() {
@@ -70,6 +72,7 @@ run_eng() {
   local dir="$OUT/$eng"
   mkdir -p "$dir"
   local args=(-c "one_tenth_ncell=1" -c "use_gap=${GAP}" -c "nthread=1" -c "mytstop=${TSTOP}"
+    -c "prcs_steps_per_ms=${STEPS_PER_MS}"
     -c "benchmark_quiet=1" -c "prcellstate_gid=${GID}" -c "prcellstate_dump_t0=${DUMP_T0}")
   case "$eng" in
     cpu) args+=(-c "enable_gpu=0" -c "coreneuron=0" -c "coreneuron_gpu=0") ;;

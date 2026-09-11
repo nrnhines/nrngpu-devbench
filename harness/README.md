@@ -62,3 +62,5 @@ python -m neuron.debug.rdcellstate cpu/47_nrn000_t100.nrndat cn_gpu/47_acc_gpu_t
 ```
 
 `--checkpoint-t T` arms native/CPU phase dumps (`pc.prcellstate_checkpoint`). CN has no phase checkpoints.
+
+`--steps-per-ms N` sets `dt = 1/N` after `manage_setup` (`prcs_steps_per_ms`; the built-in `steps_per_ms` is reset from `dt` during setup). `N=64` (binary-exact dt) makes Traub gap CPU↔CN match at tstop=50, including the last-step-start spike; product `N=40` (dt=0.025) misses that step on CN.
