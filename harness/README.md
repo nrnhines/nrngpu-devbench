@@ -1,7 +1,7 @@
 # Matrix harness (psolve wall + last-psolve identity)
 
 8 configs × 4 engines: throwaway `psolve(dt)` + 3 `stdinit`/`psolve(tstop)`. **Not ctest wall.**
-Cell: **setup / solve_min–solve_max**. setup is interpreter wall of the throwaway (copyin/mk_mech + one step). solve is three full tstop psolves (NEURON: psolve wall; CN: `Solver Time`).
+Cell: **setup / solve_min–solve_max**. setup is interpreter wall of the throwaway (copyin/mk_mech + one step). solve is three full tstop psolves (NEURON: psolve wall; CN: `Solver Time`). Last column **native/CN GPU** = min(native solves) / min(CN GPU Solver Time) (`< 1` = native faster).
 
 ```bash
 source ~/neuron/bin/nrnenv nrngpu build-gpu
@@ -33,7 +33,7 @@ Not in this harness (1 process). See campaign `2026-09-10-tip-psolve-matrix/META
 
 ## Campaign
 
-Latest: `../campaigns/2026-09-11-psolve-setup-warm/`. Prior: `../campaigns/2026-09-10-tip-psolve-matrix/`. Do not overwrite `archive/2026-08-05-matrix/` or `2026-08-10-tip-l0-bars`.
+Latest: `../campaigns/2026-09-11-native-cngpu-ratio/`. Prior: `../campaigns/2026-09-11-psolve-setup-warm/`, `../campaigns/2026-09-10-tip-psolve-matrix/`. Do not overwrite `archive/2026-08-05-matrix/` or `2026-08-10-tip-l0-bars`.
 
 ## Traub CN −6 (prcellstate)
 

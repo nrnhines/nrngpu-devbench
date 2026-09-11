@@ -58,6 +58,16 @@ def fmt_cell(setup: float | None, vals: list[float] | None) -> str:
     return f"{setup_s} / {min(vals):.4g}–{max(vals):.4g}"
 
 
+def fmt_ratio(native_vals: list[float] | None, cng_vals: list[float] | None) -> str:
+    """min(native solves) / min(CN GPU Solver Time). Native faster is < 1."""
+    if not native_vals or not cng_vals:
+        return "—"
+    cng_min = min(cng_vals)
+    if cng_min <= 0.0:
+        return "—"
+    return f"{min(native_vals) / cng_min:.2f}×"
+
+
 # row key -> (label, log_prefix pattern pieces)
 ROWS = [
     ("ring_n16_nt1", "Ring16 nt1"),
@@ -78,9 +88,11 @@ def main() -> None:
     stamp = (out / "stamp.txt").read_text() if (out / "stamp.txt").exists() else ""
     rows_out: list[dict] = []
     table: dict[str, dict[str, str]] = {}
+    solves: dict[str, dict[str, list[float] | None]] = {}
 
     for rkey, rlabel in ROWS:
         table[rkey] = {}
+        solves[rkey] = {}
         cpu_spikes = load_spike_dir(out / "spikes" / f"{rkey}_cpu")
         for ckey, clabel in COLS:
             log = out / f"{rkey}_{ckey}.log"
@@ -93,6 +105,7 @@ def main() -> None:
                 ident, nspk = "pass", len(cpu_spikes)
             if not log.exists():
                 table[rkey][ckey] = "MISS"
+                solves[rkey][ckey] = None
                 rows_out.append(
                     {
                         "row": rlabel,
@@ -102,6 +115,7 @@ def main() -> None:
                         "t1": "",
                         "t2": "",
                         "cell": "MISS",
+                        "ratio_native_cngpu": "",
                         "identity": ident if other_spikes is not None else "miss",
                         "n_spikes": nspk if nspk is not None else "",
                         "log": str(log),
@@ -112,6 +126,7 @@ def main() -> None:
             setup, vals = parse_log(text, ckey)
             cell = fmt_cell(setup, vals)
             table[rkey][ckey] = cell
+            solves[rkey][ckey] = vals
             rec = {
                 "row": rlabel,
                 "engine": ckey,
@@ -120,14 +135,33 @@ def main() -> None:
                 "t1": vals[1] if vals and len(vals) > 1 else "",
                 "t2": vals[2] if vals and len(vals) > 2 else "",
                 "cell": cell,
+                "ratio_native_cngpu": "",
                 "identity": ident,
                 "n_spikes": nspk if nspk is not None else "",
                 "log": log.name,
             }
             rows_out.append(rec)
 
+        ratio = fmt_ratio(solves[rkey].get("gpu"), solves[rkey].get("cn_gpu"))
+        table[rkey]["ratio"] = ratio
+        for rec in rows_out:
+            if rec["row"] == rlabel and rec["engine"] == "gpu":
+                rec["ratio_native_cngpu"] = ratio if ratio != "—" else ""
+
     csv_path = out / "results.csv"
-    fields = ["row", "engine", "setup", "t0", "t1", "t2", "cell", "identity", "n_spikes", "log"]
+    fields = [
+        "row",
+        "engine",
+        "setup",
+        "t0",
+        "t1",
+        "t2",
+        "cell",
+        "ratio_native_cngpu",
+        "identity",
+        "n_spikes",
+        "log",
+    ]
     with csv_path.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
@@ -158,19 +192,21 @@ def main() -> None:
         "setup = throwaway `psolve(dt)` (interpreter wall: first-process copyin/mk_mech + one step).",
         "solve = three full-tstop psolves after `stdinit`. NEURON: psolve wall. CN: `Solver Time`.",
         "Identity: last-psolve raster vs **CPU of the same config** (exact sorted t,gid).",
+        "**native/CN GPU** = min(native solves) / min(CN GPU Solver Time). Native faster is `< 1`.",
         "",
-        "| Config | CPU | CN | CN GPU | GPU (native) |",
-        "|--------|-----|----|--------|--------------|",
+        "| Config | CPU | CN | CN GPU | GPU (native) | native/CN GPU |",
+        "|--------|-----|----|--------|--------------|---------------|",
     ]
     for rkey, rlabel in ROWS:
         c = table[rkey]
         lines.append(
-            "| {lab} | {cpu} {icpu} | {cn} {icn} | {cng} {icng} | {gpu} {igpu} |".format(
+            "| {lab} | {cpu} {icpu} | {cn} {icn} | {cng} {icng} | {gpu} {igpu} | {ratio} |".format(
                 lab=rlabel,
                 cpu=c.get("cpu", ""),
                 cn=c.get("cn_cpu", ""),
                 cng=c.get("cn_gpu", ""),
                 gpu=c.get("gpu", ""),
+                ratio=c.get("ratio", "—"),
                 icpu=ident_mark(rlabel, "cpu"),
                 icn=ident_mark(rlabel, "cn_cpu"),
                 icng=ident_mark(rlabel, "cn_gpu"),

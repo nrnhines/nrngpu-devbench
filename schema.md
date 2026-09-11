@@ -78,11 +78,14 @@ config,backend,identity,wall_cold_s,wall_warm_s,wall_method,hypothesis_id,status
 
 ## Preferred SUMMARY matrix (human table)
 
-Column order (archive-like, **GPU (native)** last):
+Column order (archive-like, **GPU (native)** then derived ratio):
 
 ```text
-Config | CPU | CN | CN GPU | GPU (native)
+Config | CPU | CN | CN GPU | GPU (native) | native/CN GPU
 ```
+
+`native/CN GPU` = min(native solves) / min(CN GPU Solver Time). Native faster is `< 1`.
+Do not fold the ratio into the GPU (native) cell (that cell stays `setup / min–max` like the other engines).
 
 Each body cell:
 
