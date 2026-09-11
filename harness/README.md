@@ -34,3 +34,31 @@ Not in this harness (1 process). See campaign `2026-09-10-tip-psolve-matrix/META
 ## Campaign
 
 Latest: `../campaigns/2026-09-11-psolve-setup-warm/`. Prior: `../campaigns/2026-09-10-tip-psolve-matrix/`. Do not overwrite `archive/2026-08-05-matrix/` or `2026-08-10-tip-l0-bars`.
+
+## Traub CN −6 (prcellstate)
+
+Not the 3-warm matrix. CoreNEURON Traub **gap** is **7867** vs CPU/native **7873**. Campaign rasters: CN matches CPU through **t=99.95**; CPU has six extra spikes at **t=99.975**, gids **47 51 153 266 276 347**. No-gap is exact 4474 (includes t=99.975). This is a CoreNEURON identity investigation, not a native-GPU recode.
+
+Spikes first (no GPU):
+
+```bash
+python3 ~/neuron/devbench/harness/diff_rasters.py \
+  ~/neuron/devbench/campaigns/2026-09-11-psolve-setup-warm/raw/spikes/traub_gap_cpu \
+  ~/neuron/devbench/campaigns/2026-09-11-psolve-setup-warm/raw/spikes/traub_gap_cn_gpu
+```
+
+Then cell dumps (single `stdinit`+`psolve`; default gid 47). NEURON writes `<gid>_nrnCCC_tT.nrndat` after stdinit and after psolve. CN `--prcellgid` writes `<gid>_cpu_init.corenrn` / `<gid>_acc_gpu_t….corenrn` at CN init and tstop.
+
+```bash
+source ~/neuron/bin/nrnenv nrngpu build-gpu
+export TRAUB_PRCS_OUT=/tmp/traub-prcs
+bash ~/neuron/devbench/harness/traub_prcs.sh --gid 47 --tstop 100 --engines cpu,cn_cpu,cn_gpu
+# last-dt hypothesis: tstop=99.95 should match 7867 on both
+bash ~/neuron/devbench/harness/traub_prcs.sh --gid 47 --tstop 99.95 --engines cpu,cn_gpu --out /tmp/traub-prcs-99.95
+cd "$TRAUB_PRCS_OUT"
+# CN-internal dump is *.corenrn. The NEURON *.nrndat after a CN psolve is
+# datareturn (incomplete RANGE) — not CN cell truth. t=0 NEURON dumps should match.
+python -m neuron.debug.rdcellstate cpu/47_nrn000_t100.nrndat cn_gpu/47_acc_gpu_t1*.corenrn --ignore-unused --top 25
+```
+
+`--checkpoint-t T` arms native/CPU phase dumps (`pc.prcellstate_checkpoint`). CN has no phase checkpoints.

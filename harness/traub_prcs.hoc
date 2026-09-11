@@ -1,0 +1,150 @@
+// Traub 1/10 single psolve + prcellstate dumps (CN Traub −6 investigation).
+//
+// One stdinit + psolve(tstop) — not the 3-warm matrix. Spikes + NEURON
+// prcellstate after psolve; CoreNEURON also dumps --prcellgid at init and tstop
+// when coreneuron=1 and prcellstate_gid>=0.
+//
+// From ~/models/82894:
+//   special -c one_tenth_ncell=1 -c use_gap=1 -c mytstop=100 \
+//     -c enable_gpu=0 -c coreneuron=1 -c coreneuron_gpu=1 \
+//     -c prcellstate_gid=47 -c benchmark_quiet=1 \
+//     /path/to/traub_prcs.hoc
+
+setuptime = startsw()
+{xopen("hoc/defvar.hoc")}
+
+default_var("load_balance_phase", 0)
+default_var("one_tenth_ncell", 1)
+default_var("use_gap", 0)
+default_var("use_ectopic", 1)
+default_var("use_inject", 1)
+default_var("awake", 1)
+default_var("default_delay", 0.5)
+default_var("ranseedbase", 1)
+default_var("use_traubexact", 0)
+default_var("wholecell_prefix", "cxwhole")
+default_var("multisplit_prefix", "cx")
+default_var("multisplit_nhost", 256)
+default_var("msoptfactor", 0.8)
+default_var("nthread", 1)
+default_var("savestatetest", 0)
+default_var("coreneuron", 0)
+default_var("coreneuron_gpu", 0)
+default_var("enable_gpu", 0)
+default_var("gpu_backend", "native")
+default_var("gpu_download_flush", 1)
+default_var("benchmark_quiet", 1)
+default_var("prcellstate_gid", -1)
+default_var("prcellstate_checkpoint", -1)
+default_var("prcellstate_checkpoint_t", -1)
+default_var("prcellstate_dump_t0", 1)
+default_var("spike_compress", 5)
+default_var("cacheeffic", 1)
+default_var("multisend", 0)
+default_var("selfevents", 0)
+default_var("fakerank", -1)
+default_var("fakenhost", -1)
+
+gfac_AMPA = 1
+gfac_NMDA = 1
+gfac_GABAA = 1
+use_p2c_net_connections = 0
+
+{localloadfile("manage_setup.hoc")}
+
+steps_per_ms = 40
+dt = .025
+secondorder = 2
+default_var("mytstop", 100)
+tstop = mytstop
+
+if (0) { pc.runworker()  pc.done() quit() }
+
+strdef prcs_py
+if (coreneuron) {
+    if (nrnpython("")) {
+        nrnpython("from neuron import coreneuron")
+        nrnpython("coreneuron.enable = True")
+        if (coreneuron_gpu) {
+            nrnpython("coreneuron.gpu = True")
+            nrnpython("coreneuron.permute = 2")
+        } else {
+            nrnpython("coreneuron.gpu = False")
+            nrnpython("coreneuron.permute = 1")
+        }
+        if (prcellstate_gid >= 0) {
+            // CN writes <gid>_cpu_init.corenrn / <gid>_acc_gpu_t….corenrn
+            // at CN init and tstop (not the NEURON .nrndat after datareturn).
+            sprint(prcs_py, "coreneuron.prcellstate = %d", prcellstate_gid)
+            nrnpython(prcs_py)
+        }
+    } else {
+        execerror("coreneuron not installed")
+    }
+}
+
+pc.optimize_node_order(2)
+if (enable_gpu) {
+    if (coreneuron) {
+        execerror("enable_gpu=1 is native GPU only; use coreneuron_gpu=1 for CoreNEURON GPU")
+    }
+    pc.gpu_enable(1)
+    pc.gpu_backend(gpu_backend)
+    pc.gpu_download_flush_interval(gpu_download_flush)
+    print pc.gpu_fixed_step_phases()
+}
+
+proc dump_prcs() { local spgid  localobj s
+    if (prcellstate_gid < 0) { return }
+    spgid = thishost_gid(prcellstate_gid)
+    if (spgid < 0) {
+        if (pc.id == 0) {
+            printf("PRCS skip: gid %d not on this rank\n", prcellstate_gid)
+        }
+        return
+    }
+    s = new String()
+    sprint(s.s, "nrn%d%d%d_t%g", coreneuron, coreneuron_gpu, enable_gpu, t)
+    pc.prcellstate(spgid, s.s)
+    if (pc.id == 0) {
+        printf("PRCS wrote %d_%s.nrndat t=%g\n", spgid, s.s, t)
+    }
+}
+
+pc.setup_transfer()
+pnm.set_maxstep(10)
+stdinit()
+if (prcellstate_dump_t0) {
+    dump_prcs()
+}
+if (prcellstate_checkpoint_t >= 0 && prcellstate_gid >= 0) {
+    pc.prcellstate_checkpoint(prcellstate_gid, 0, prcellstate_checkpoint_t)
+    if (pc.id == 0) {
+        printf("prcellstate checkpoint armed: gid=%d t=%g\n", prcellstate_gid, prcellstate_checkpoint_t)
+    }
+} else if (prcellstate_checkpoint != -1 && prcellstate_gid != -1) {
+    pc.prcellstate_checkpoint(prcellstate_gid, prcellstate_checkpoint)
+}
+
+pnm.spikevec.resize(0)
+pnm.idvec.resize(0)
+runtime = startsw()
+pnm.psolve(tstop)
+runtime = startsw() - runtime
+if (pc.id == 0) {
+    printf("PRCS_PSOLVE runtime=%g tstop=%g enable_gpu=%d coreneuron=%d coreneuron_gpu=%d\n", \
+        runtime, tstop, enable_gpu, coreneuron, coreneuron_gpu)
+}
+
+dump_prcs()
+spike2file()
+if (pc.id == 0) {
+    print "tstop = ", tstop
+    printf("IDENTITY_N=%d file=out%d.dat prcellstate_gid=%d\n", \
+        pnm.spikevec.size, pnm.nhost, prcellstate_gid)
+    printf("PRCS_DONE\n")
+}
+
+getstat()
+{pc.done()}
+if (!serial) { quit() }
