@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reduced dentate multi-psolve (1 rank): load product path once, then 2 more psolves.
+"""Reduced dentate multi-psolve (1 rank): throwaway psolve(dt), then N stdinit+psolve(tstop).
 
 Launch from a reduced_dentate ctest workdir (datasets + special).
 
@@ -70,27 +70,34 @@ def main() -> None:
     spike_dir = os.environ.get("NRN_SPIKE_OUT_DIR", os.path.join(cwd, "_perf_spikes"))
     os.makedirs(spike_dir, exist_ok=True)
     spike_dir_hoc = spike_dir.replace("\\", "\\\\").replace('"', '\\"')
-    # Last-psolve raster only (clear record vectors before the last iteration).
+    # Throwaway psolve(dt) pays first-process copyin/mk_mech; then nrep full
+    # stdinit+psolve(tstop). Last-psolve raster only.
     multi_tail = f"""
-// multi-psolve: first call uses state after the stdinit already done above.
+// multi-psolve: setup = psolve(dt) after the stdinit already done above;
+// then nrep warms each starting with stdinit.
 strdef spikeout_fname
 proc multi_prun() {{ local i, tsav
-  for i = 0, {nrep - 1} {{
-    if (i > 0) {{
-      stdinit()
+  if (use_coreneuron) {{
+    nrnpython("from neuron import coreneuron")
+    nrnpython("coreneuron.enable = True")
+    if (use_gpu) {{
+      nrnpython("coreneuron.gpu = True")
+    }} else {{
+      nrnpython("coreneuron.gpu = False")
     }}
+  }}
+  tsav = startsw()
+  pnm.pc.psolve(dt)
+  if (pnm.pc.id == 0) {{
+    printf("MULTI_PSOLVE setup psolve=%g\\n", startsw() - tsav)
+  }}
+  for i = 0, {nrep - 1} {{
+    stdinit()
     if (i == {nrep - 1}) {{
       pnm.spikevec.resize(0)
       pnm.idvec.resize(0)
     }}
     if (use_coreneuron) {{
-      nrnpython("from neuron import coreneuron")
-      nrnpython("coreneuron.enable = True")
-      if (use_gpu) {{
-        nrnpython("coreneuron.gpu = True")
-      }} else {{
-        nrnpython("coreneuron.gpu = False")
-      }}
       pnm.pc.psolve(tstop)
       if (pnm.pc.id == 0) {{
         printf("MULTI_PSOLVE i=%d psolve_wall_mark=1\\n", i)

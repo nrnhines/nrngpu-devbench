@@ -1,5 +1,4 @@
-// Traub multi-psolve bench: same as init.hoc but 3× prun() with markers.
-// prun() itself stdinit+psolve (parlib.hoc), so i=0 cold, i=1,2 warm.
+// Traub multi-psolve bench: throwaway psolve(dt) then n_multi_psolve stdinit+psolve(tstop).
 //
 // Usage (from ~/models/82894):
 //   special -c one_tenth_ncell=1 -c use_gap=0 -c nthread=1 -c mytstop=100 \
@@ -82,12 +81,29 @@ if (enable_gpu) {
     print pc.gpu_fixed_step_phases()
 }
 
+// Throwaway psolve(dt) after one stdinit, then n_multi_psolve stdinit+psolve(tstop).
+// Time psolve only (not stdinit) so the three solve numbers match dentate/ring.
+pc.setup_transfer()
+pnm.set_maxstep(10)
+stdinit()
+runtime = startsw()
+pnm.psolve(dt)
+runtime = startsw() - runtime
+if (pc.id == 0) {
+    printf("MULTI_PSOLVE setup runtime=%g\n", runtime)
+}
+
 for i = 0, n_multi_psolve - 1 {
+    pc.setup_transfer()
+    pnm.set_maxstep(10)
+    stdinit()
     if (i == n_multi_psolve - 1) {
         pnm.spikevec.resize(0)
         pnm.idvec.resize(0)
     }
-    prun()
+    runtime = startsw()
+    pnm.psolve(tstop)
+    runtime = startsw() - runtime
     if (pc.id == 0) {
         printf("MULTI_PSOLVE i=%d runtime=%g\n", i, runtime)
         printf("BENCHMARK runtime=%g setuptime=%g ncell=%d enable_gpu=%d nhost=%d rep=%d\n", \

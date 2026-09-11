@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run 8×4 psolve matrix (3 multi-solves per cell). Logs under /tmp/perf-matrix.
+# Run 8×4 psolve matrix: throwaway psolve(dt) + 3 stdinit/psolve(tstop) per cell.
 # Last-psolve ASCII rasters: $OUT/spikes/<tag>/ (identity vs CPU of the same config).
 set -euo pipefail
 

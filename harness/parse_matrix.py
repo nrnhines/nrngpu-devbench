@@ -13,45 +13,49 @@ SOLVER_RE = re.compile(r"Solver Time\s*:\s*([0-9.eE+-]+)")
 MULTI_RE = re.compile(r"MULTI_PSOLVE i=(\d+)\s+runtime=([0-9.eE+-]+)")
 MULTI_PSOLVE_RE = re.compile(r"MULTI_PSOLVE i=(\d+)\s+psolve=([0-9.eE+-]+)")
 MULTI_MARK_RE = re.compile(r"MULTI_PSOLVE i=(\d+)\s+psolve_wall_mark")
+SETUP_RE = re.compile(r"MULTI_PSOLVE setup (?:psolve|runtime)=([0-9.eE+-]+)")
 
 
-def parse_log(text: str, engine: str) -> list[float] | None:
-    """Return three seconds for this engine, or None if incomplete."""
-    if engine in ("cn_cpu", "cn_gpu"):
-        solvers = [float(m.group(1)) for m in SOLVER_RE.finditer(text)]
-        if len(solvers) >= 3:
-            return solvers[:3]
-        # fallback: NEURON runtime markers if Solver Time missing
+def _solve_times(text: str, engine: str) -> list[float]:
+    """Three full-tstop solves (after optional throwaway)."""
     times: list[tuple[int, float]] = []
     for m in MULTI_RE.finditer(text):
         times.append((int(m.group(1)), float(m.group(2))))
     if not times:
         for m in MULTI_PSOLVE_RE.finditer(text):
             times.append((int(m.group(1)), float(m.group(2))))
-    if engine in ("cn_cpu", "cn_gpu") and len(solvers := [float(m.group(1)) for m in SOLVER_RE.finditer(text)]) >= 1:
-        # Pair by order if we have 3 solver times
+    times.sort(key=lambda x: x[0])
+    marked = [t for _, t in times]
+    solvers = [float(m.group(1)) for m in SOLVER_RE.finditer(text)]
+    if engine in ("cn_cpu", "cn_gpu"):
+        # Throwaway psolve(dt) also prints Solver Time; keep the last three.
+        if len(solvers) >= 4:
+            return solvers[-3:]
         if len(solvers) >= 3:
             return solvers[:3]
-    if len(times) >= 3:
-        times.sort(key=lambda x: x[0])
-        return [t for _, t in times[:3]]
-    if len(times) > 0:
-        times.sort(key=lambda x: x[0])
-        return [t for _, t in times]
-    return None
+    if len(marked) >= 3:
+        return marked[:3]
+    return marked
 
 
-def fmt_cell(vals: list[float] | None) -> str:
+def parse_log(text: str, engine: str) -> tuple[float | None, list[float] | None]:
+    """Return (setup_s, three solve seconds) or Nones if incomplete."""
+    setup_m = SETUP_RE.search(text)
+    setup = float(setup_m.group(1)) if setup_m else None
+    solves = _solve_times(text, engine)
+    if not solves:
+        return setup, None
+    return setup, solves
+
+
+def fmt_cell(setup: float | None, vals: list[float] | None) -> str:
     # Use "/" not "|" so markdown tables stay valid.
     if not vals:
         return "ERR"
+    setup_s = f"{setup:.4g}" if setup is not None else "—"
     if len(vals) == 1:
-        return f"{vals[0]:.4g} / —"
-    cold = vals[0]
-    warm = vals[1:]
-    if len(warm) == 1:
-        return f"{cold:.4g} / {warm[0]:.4g}"
-    return f"{cold:.4g} / {min(warm):.4g}–{max(warm):.4g}"
+        return f"{setup_s} / {vals[0]:.4g}"
+    return f"{setup_s} / {min(vals):.4g}–{max(vals):.4g}"
 
 
 # row key -> (label, log_prefix pattern pieces)
@@ -93,6 +97,7 @@ def main() -> None:
                     {
                         "row": rlabel,
                         "engine": ckey,
+                        "setup": "",
                         "t0": "",
                         "t1": "",
                         "t2": "",
@@ -104,12 +109,13 @@ def main() -> None:
                 )
                 continue
             text = log.read_text(errors="replace")
-            vals = parse_log(text, ckey)
-            cell = fmt_cell(vals)
+            setup, vals = parse_log(text, ckey)
+            cell = fmt_cell(setup, vals)
             table[rkey][ckey] = cell
             rec = {
                 "row": rlabel,
                 "engine": ckey,
+                "setup": setup if setup is not None else "",
                 "t0": vals[0] if vals and len(vals) > 0 else "",
                 "t1": vals[1] if vals and len(vals) > 1 else "",
                 "t2": vals[2] if vals and len(vals) > 2 else "",
@@ -121,7 +127,7 @@ def main() -> None:
             rows_out.append(rec)
 
     csv_path = out / "results.csv"
-    fields = ["row", "engine", "t0", "t1", "t2", "cell", "identity", "n_spikes", "log"]
+    fields = ["row", "engine", "setup", "t0", "t1", "t2", "cell", "identity", "n_spikes", "log"]
     with csv_path.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
@@ -148,8 +154,9 @@ def main() -> None:
         "",
         stamp.strip(),
         "",
-        "Each cell: **cold / warm_min–warm_max** seconds (3 psolves in one process).",
-        "NEURON columns: psolve wall. CN columns: CoreNEURON `Solver Time`.",
+        "Each cell: **setup / solve_min–solve_max** seconds.",
+        "setup = throwaway `psolve(dt)` (interpreter wall: first-process copyin/mk_mech + one step).",
+        "solve = three full-tstop psolves after `stdinit`. NEURON: psolve wall. CN: `Solver Time`.",
         "Identity: last-psolve raster vs **CPU of the same config** (exact sorted t,gid).",
         "",
         "| Config | CPU | CN | CN GPU | GPU (native) |",

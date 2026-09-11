@@ -44,13 +44,16 @@ new = f"""if __name__ == '__main__':
 
     model = create_rings()
 
-    ## Multi-psolve (cold = i0, warm = i1..i2); last-psolve raster only ##
+    ## Throwaway psolve(dt) then nrep stdinit+psolve(tstop); last-psolve raster ##
     arm_prcellstate_checkpoint()
     _spike_dir = os.environ.get("NRN_SPIKE_OUT_DIR", ".")
     os.makedirs(_spike_dir, exist_ok=True)
+    _setup_rt, _, _, _, _ = prun(h.dt)
+    pc.barrier()
+    if settings.rank == 0:
+        print("MULTI_PSOLVE setup runtime=%g" % (_setup_rt,), flush=True)
     for _i in range({nrep}):
-        if _i > 0:
-            h.stdinit()
+        h.stdinit()
         if _i == {nrep} - 1:
             _cu.tvec.resize(0)
             _cu.idvec.resize(0)
