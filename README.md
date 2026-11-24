@@ -3,7 +3,7 @@
 **Path:** `~/neuron/devbench` (own git; not inside product trees)  
 **Remote:** [nrnhines/nrngpu-devbench](https://github.com/nrnhines/nrngpu-devbench) (public; `origin`)  
 **Kind:** platform — evidence and process around NEURON product work  
-**Product context:** often `~/neuron/nrngpu` @ `local/gpu-native` (does not live here)
+**Product context:** often `~/neuron/nrngpu` @ `hines-grok/gpu-native` (does not live here)
 
 ## Purpose (one sentence)
 

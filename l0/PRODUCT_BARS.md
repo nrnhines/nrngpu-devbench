@@ -2,7 +2,7 @@
 
 **Role:** checklist only. Identity gates live in **product** trees and **ctest**, not in this repo.  
 **Primary product tree:** `~/neuron/nrngpu`  
-**Living tip (typical):** branch `local/gpu-native`  
+**Living tip (typical):** branch `hines-grok/gpu-native`  
 **Env:** `source ~/neuron/bin/nrnenv nrngpu build-gpu`  
 **Native defaults:** `NRN_GPU_BACKEND_TEST=native`, `NRN_GPU_PERMUTE=2`  
 **Multi-rank one GPU:** prefer CUDA MPS (`bash ~/neuron/nrngpu/test/external/ensure_cuda_mps.sh`)

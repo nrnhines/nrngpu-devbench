@@ -1,0 +1,37 @@
+=== dentate_ctest 2026-11-24T10:48:28-05:00 ===
+exit=0
+STATUS dentate_ctest PASS
+psolve=0.935741 s
+=== dentate_compare 2026-11-24T10:48:34-05:00 ===
+exit=0
+STATUS dentate_compare PASS
+run_spikes=400 ref_spikes=400 sorted_multiset=match
+=== ring_mpi_ctest 2026-11-24T10:48:34-05:00 ===
+exit=0
+STATUS ring_mpi_ctest PASS
+ctest=1.67 s
+ring_spk2_lines=688
+=== ring_prcell_32_100 2026-11-24T10:48:36-05:00 ===
+exit=1
+identity=pass
+cpu_runtime=0.387497 gpu_runtime=0.851209
+wrote_688=2
+max_abs_d=9.9476e-14
+=== ring_spk_gpu 2026-11-24T10:48:38-05:00 ===
+exit=0
+STATUS ring_spk_gpu PASS
+ring_spk1_gpu_lines=688
+=== traub_nogap 2026-11-24T10:48:40-05:00 ===
+exit=0
+STATUS traub_nogap PASS
+spikes=4474
+ctest=79.46 s (includes Building Traub ACC special)
+=== traub_gap 2026-11-24T10:49:59-05:00 ===
+exit=0
+STATUS traub_gap PASS
+spikes=7873
+ctest=18.05 s
+=== DONE 2026-11-24T10:50:17-05:00 ===
+tip=f39717f745478885b0861364b3f7f1e20ac940a4
+branch=hines-grok/gpu-native
+nrngpu_dirty_tracked=0
